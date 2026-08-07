@@ -128,7 +128,9 @@
               creates a promise.
             </p>
             <p class="claim-note">
-              Reachable from Slack today. Its own surface is still being built; see
+              The conversation reaches it over a channel adapter, so the chat client is a
+              configuration choice rather than a dependency. Slack is the adapter that ships for
+              this role today, and its surface inside the platform is being built; see
               <a href="#limits">limits</a>.
             </p>
           </div>
@@ -155,7 +157,7 @@
             GitHub throttled the API. That's the most trivially self-healing failure a system can
             have: the window resets, and the same call succeeds. Instead, the factory parked the
             ticket, held the floor for <strong>eighteen hours</strong>, ran nothing else, and told
-            nobody. The one Slack message a park should have produced never fired, because the
+            nobody. The one message a park should have produced never fired, because the
             diagnosis meant to write it couldn't run either.
           </p>
           <p>
@@ -209,15 +211,15 @@
         <div class="auth-strip">
           <div class="auth-step">
             <span class="auth-step-tag">read</span>
-            <p>Free for anyone in the project's Slack channel. Ask "what's the status of X" and get an answer. No gate.</p>
+            <p>Free for anyone in the project's channel. Ask "what's the status of X" and get an answer. No gate.</p>
           </div>
           <div class="auth-step">
             <span class="auth-step-tag">write</span>
-            <p><code>resume</code> / <code>skip</code> only for a Slack user on that project's allowlist. Empty by default, so nobody can act until a project opts in.</p>
+            <p><code>resume</code> / <code>skip</code> only for a user on that project's allowlist. Empty by default, so nobody can act until a project opts in.</p>
           </div>
           <div class="auth-step">
             <span class="auth-step-tag">production</span>
-            <p>Never actionable from Slack, full stop, not even for an admin. An unauthorized attempt is told plainly and logged, never silently executed.</p>
+            <p>Never actionable from chat, full stop, not even for an admin. An unauthorized attempt is told plainly and logged, never silently executed.</p>
           </div>
         </div>
 
@@ -485,10 +487,11 @@ model:
         </p>
         <ul class="limits-list">
           <li>
-            <strong>The product/requirements role is only reachable from Slack today.</strong>
-            It sweeps and reconciles without it, but the conversational half (proposing,
-            accepting, versioning a requirement) lives in the Slack package and does not yet
-            have its own surface.
+            <strong>The product role's chat ships on one channel today.</strong>
+            It sweeps and reconciles with no chat at all, and the channel is a pluggable adapter
+            rather than a dependency, but the conversational half (proposing, accepting,
+            versioning a requirement) currently exists only as the Slack adapter. Its surface
+            inside the platform is still being built.
           </li>
           <li>
             <strong>Onboarding a legacy codebase is manual.</strong>

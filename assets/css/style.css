@@ -650,11 +650,37 @@ section + section {
 
 .diagram-figure {
   margin: 0;
-  min-width: 1000px;
 }
 
 .diagram-figure svg {
   display: block;
+}
+
+/* Two-panel comparison: side by side on desktop, stacked on narrow screens. */
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.compare-panel {
+  min-width: 0;
+}
+
+.compare-panel svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 460px;
+}
+
+.compare-caption {
+  margin-top: var(--space-3);
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  max-width: 68ch;
 }
 
 .diagram-figure figcaption {
@@ -761,6 +787,32 @@ section + section {
 
 .dg-arrowhead {
   fill: var(--gray-500);
+}
+
+/* Capacity diagram: isolated lanes vs one shared line */
+
+.dg-lane {
+  stroke-dasharray: 5 4;
+}
+
+.dg-tether {
+  stroke: var(--gray-500);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+  fill: none;
+}
+
+.dg-foot {
+  fill: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dg-foot-sub {
+  fill: var(--gray-500);
+  font-family: var(--font-sans);
+  font-size: 11.5px;
 }
 
 .pipeline-branches {
@@ -1332,6 +1384,11 @@ td code, p code {
 
   .roles-grid {
     grid-template-columns: 1fr;
+  }
+
+  .compare-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
   }
 
   .nav-toggle {
