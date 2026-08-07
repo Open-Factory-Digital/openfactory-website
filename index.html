@@ -121,19 +121,21 @@
     <section id="capacity">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Individual speed is not capacity</span>
-          <h2>Every developer got faster. The company didn't.</h2>
+          <span class="eyebrow">The unit of capacity</span>
+          <h2>A faster developer is still one developer.</h2>
           <p>
-            Codex, Claude Code, Kimi and the rest raise the output of one person at a keyboard.
-            That is real, and it is sold that way: one licence, one person, one conversation at a
-            time. The ceiling still moves with headcount, because somebody has to start each task,
-            watch it, and walk it to a pull request.
+            Codex, Claude Code, Kimi and the rest raise the output of one person at a keyboard,
+            and they are sold the way they work: one licence, one person, one conversation at a
+            time. The unit of capacity is still a human, because somebody has to start each task,
+            stay with it, and carry it to a pull request.
           </p>
           <p>
             OpenFactory does not compete with those tools. It runs them. The agents you already
             pay for stop being a personal assistant and become a line the company owns, and the
             number you manage stops being cost per developer per month and becomes cost per
-            merged ticket.
+            merged ticket. The people do not disappear from that picture. They stop being the
+            conveyor belt between a ticket and a pull request, and keep the decisions that need
+            judgment.
           </p>
         </div>
 
@@ -170,7 +172,7 @@
               <rect class="dg-pill" x="290" y="218" width="140" height="28" rx="14"/>
               <text class="dg-pill-text" x="360" y="236.5" text-anchor="middle">one PR</text>
 
-              <text class="dg-foot" x="0" y="292">Capacity is headcount.</text>
+              <text class="dg-foot" x="0" y="292">The unit is a person.</text>
               <text class="dg-foot-sub" x="0" y="312">Bought by the seat. Remove the person and the lane stops.</text>
             </svg>
           </div>
@@ -210,7 +212,7 @@
               <rect class="dg-pill" x="364" y="184" width="92" height="28" rx="14"/>
               <text class="dg-pill-text" x="410" y="202.5" text-anchor="middle">reviewed PR</text>
 
-              <text class="dg-foot" x="0" y="292">Capacity is the line.</text>
+              <text class="dg-foot" x="0" y="292">The unit is the line.</text>
               <text class="dg-foot-sub" x="0" y="312">Measured per merged ticket, not per seat.</text>
             </svg>
           </div>
@@ -466,39 +468,48 @@
       </div>
     </section>
 
-    <!-- ============ WHY OPENFACTORY: short, commercial ============ -->
-    <section id="why">
+    <!-- ============ FOR DEVELOPERS ============ -->
+    <section id="for-developers">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Why teams use it</span>
-          <h2>Ship more, review less</h2>
+          <span class="eyebrow">For the people who will run it</span>
+          <h2>It takes the boring half.</h2>
         </div>
 
         <div class="feature-grid">
           <div class="feature">
-            <h3>Ships reviewed pull requests, not just diffs</h3>
+            <h3>You keep the judgment</h3>
             <p>
-              It picks up a ticket, writes the code in its own sandbox, and opens a pull request
-              that a second, independent AI has already reviewed before you ever see it.
+              Policy authorizes the routine path, so nobody spends a morning approving test runs.
+              What gets built, whether it ships, and every promotion to production stay human
+              calls. The mechanical middle of a ticket was never the interesting part.
             </p>
           </div>
 
           <div class="feature">
-            <h3>Never fails silently</h3>
+            <h3>It never lies to you</h3>
             <p>
-              When it can't proceed on its own, it asks a person a concrete question instead of
-              quietly stalling or guessing at an answer.
+              An unreadable board is not an empty queue, and a failed read is never dressed up as
+              a result. Every stall either self-heals within a bound or asks you a concrete
+              question, and going quiet is treated as a bug by the test suite.
             </p>
           </div>
 
           <div class="feature">
-            <h3>You keep the keys to production</h3>
+            <h3>Your machines, your gates, your fork</h3>
             <p>
-              It can open and merge pull requests, but deploying to production always stays a
-              human, authenticated action. It never gets that key.
+              <code>docker compose up</code> and it runs, with no cloud account. It executes your
+              project's own commands instead of naming a build tool of its own, and it is
+              Apache-2.0: read it, run it, fork it, add a provider with one module and one
+              registry row.
             </p>
           </div>
         </div>
+
+        <p class="dev-footnote">
+          The honest limits are written down too, including what it cannot do yet.
+          <a href="/how-it-works.html#limits">Read them before you adopt it →</a>
+        </p>
       </div>
     </section>
 
