@@ -430,60 +430,6 @@ section + section {
   max-width: 68ch;
 }
 
-/* ---------- Works with: trust strip ---------- */
-
-.works-with-label {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--gray-500);
-  margin-bottom: var(--space-3);
-}
-
-.works-with-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3);
-}
-
-.works-with-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.98rem;
-  font-weight: 500;
-  color: var(--ink);
-}
-
-.works-with-icon {
-  width: 22px;
-  height: 22px;
-  fill: var(--ink);
-  flex-shrink: 0;
-}
-
-.works-with-divider {
-  width: 1px;
-  height: 24px;
-  background: var(--gray-300);
-}
-
-.works-with-footnote {
-  margin-top: var(--space-4);
-  font-size: 0.88rem;
-  color: var(--gray-500);
-}
-
-.works-with-footnote a {
-  color: var(--ink);
-  text-decoration: underline;
-  text-decoration-color: var(--gray-300);
-  text-underline-offset: 2px;
-}
-
 /* ---------- Autonomy: the tech-lead's risk boundary ---------- */
 
 .incident-box {

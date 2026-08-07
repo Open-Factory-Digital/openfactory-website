@@ -40,11 +40,10 @@
       <nav class="site-nav" id="siteNav">
         <div class="nav-links">
           <ul>
-            <li><a href="#integrations">Integrations</a></li>
             <li><a href="#roles">Roles</a></li>
             <li><a href="#autonomy">Autonomy</a></li>
+            <li><a href="#different">Different</a></li>
             <li><a href="#proof">Proof</a></li>
-            <li><a href="#numbers">Numbers</a></li>
             <li><a href="#limits">Limits</a></li>
           </ul>
         </div>
@@ -70,145 +69,6 @@
           that proves it. This is the deep-dive for anyone deciding whether to trust it, not the
           version written to be easy to read.
         </p>
-      </div>
-    </section>
-
-    <!-- ============ INTEGRATIONS: the axis diagram ============ -->
-    <section id="integrations" class="section-muted">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Provider-neutral by design</span>
-          <h2>Connects to what you already run</h2>
-          <p>
-            OpenFactory sits between the board where a ticket already lives and the coding agent
-            that works it. Each connection is a registry value, not a fork: swap the tracker
-            without touching the harness, or swap the harness without touching anything else.
-          </p>
-        </div>
-
-        <div class="diagram-scroll">
-          <figure class="diagram-figure">
-            <svg width="1000" height="480" viewBox="0 0 1000 480" role="img"
-                 aria-label="OpenFactory sits between the board (GitHub, Jira or Azure DevOps) and the harness (Claude Code, Codex, Kimi or OpenCode). It writes the PR to the client's forge, then only watches their CI/CD (GitHub Actions or Azure Pipelines) and never triggers a deploy.">
-              <defs>
-                <marker id="dg-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                  <polygon class="dg-arrowhead" points="0,0 10,5 0,10"/>
-                </marker>
-                <symbol id="ic-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
-                <symbol id="ic-jira" viewBox="0 0 24 24"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0Z"/></symbol>
-                <symbol id="ic-azuredevops" viewBox="0 0 24 24"><path d="M0 8.877L2.247 5.91l8.405-3.416V.022l7.37 5.393L2.966 8.338v8.225L0 15.707zm24-4.45v14.651l-5.753 4.9-9.303-3.057v3.056l-5.978-7.416 15.057 1.798V5.415z"/></symbol>
-                <symbol id="ic-githubactions" viewBox="0 0 24 24"><path d="M10.984 13.836a.5.5 0 0 1-.353-.146l-.745-.743a.5.5 0 1 1 .706-.708l.392.391 1.181-1.18a.5.5 0 0 1 .708.707l-1.535 1.533a.504.504 0 0 1-.354.146zm9.353-.147l1.534-1.532a.5.5 0 0 0-.707-.707l-1.181 1.18-.392-.391a.5.5 0 1 0-.706.708l.746.743a.497.497 0 0 0 .706-.001zM4.527 7.452l2.557-1.585A1 1 0 0 0 7.09 4.17L4.533 2.56A1 1 0 0 0 3 3.406v3.196a1.001 1.001 0 0 0 1.527.85zm2.03-2.436L4 6.602V3.406l2.557 1.61zM24 12.5c0 1.93-1.57 3.5-3.5 3.5a3.503 3.503 0 0 1-3.46-3h-2.08a3.503 3.503 0 0 1-3.46 3 3.502 3.502 0 0 1-3.46-3h-.558c-.972 0-1.85-.399-2.482-1.042V17c0 1.654 1.346 3 3 3h.04c.244-1.693 1.7-3 3.46-3 1.93 0 3.5 1.57 3.5 3.5S13.43 24 11.5 24a3.502 3.502 0 0 1-3.46-3H8c-2.206 0-4-1.794-4-4V9.899A5.008 5.008 0 0 1 0 5c0-2.757 2.243-5 5-5s5 2.243 5 5a5.005 5.005 0 0 1-4.952 4.998A2.482 2.482 0 0 0 7.482 12h.558c.244-1.693 1.7-3 3.46-3a3.502 3.502 0 0 1 3.46 3h2.08a3.503 3.503 0 0 1 3.46-3c1.93 0 3.5 1.57 3.5 3.5zm-15 8c0 1.378 1.122 2.5 2.5 2.5s2.5-1.122 2.5-2.5-1.122-2.5-2.5-2.5S9 19.122 9 20.5zM5 9c2.206 0 4-1.794 4-4S7.206 1 5 1 1 2.794 1 5s1.794 4 4 4zm9 3.5c0-1.378-1.122-2.5-2.5-2.5S9 11.122 9 12.5s1.122 2.5 2.5 2.5 2.5-1.122 2.5-2.5zm9 0c0-1.378-1.122-2.5-2.5-2.5S18 11.122 18 12.5s1.122 2.5 2.5 2.5 2.5-1.122 2.5-2.5zm-13 8a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0zm12 0c0 1.93-1.57 3.5-3.5 3.5a3.503 3.503 0 0 1-3.46-3.002c-.007.001-.013.005-.021.005l-.506.017h-.017a.5.5 0 0 1-.016-.999l.506-.017c.018-.002.035.006.052.007A3.503 3.503 0 0 1 20.5 17c1.93 0 3.5 1.57 3.5 3.5zm-1 0c0-1.378-1.122-2.5-2.5-2.5S18 19.122 18 20.5s1.122 2.5 2.5 2.5 2.5-1.122 2.5-2.5z"/></symbol>
-                <symbol id="ic-azurepipelines" viewBox="0 0 24 24"><path d="M1.7997 22.1998h4.2001V24H.0004v-6.0002h1.7993v4.2zM12.6229 9.8975l-7.6353 7.6353 1.4792 1.4792 7.6345-7.6362-1.4784-1.4783zM4.365 15.1793l-.391-.3908c-.5042-.5042-.5828-1.3004-.1869-1.8934l4.6036-6.8958H.9979c-.5513.0014-.9975.4487-.9975 1v5.5002l3.5021 3.6036.8625-.9238zM23.9996.9999v8.9306a2 2 0 0 1-.8893 1.6632l-12.2834 8.2005a.9999.9999 0 0 1-1.2622-.1246L8.04 18.1457c.3313-.3313 6.4656-6.4672 6.7684-6.7698l-2.1855-2.1855L5.8533 15.96l-1.5258-1.525a1.0001 1.0001 0 0 1-.1246-1.2623L12.4034.8893A2 2 0 0 1 14.0666 0h8.9331c.5522 0 .9999.4477.9999.9999zm-2.9997 5.0003c0-1.6567-1.343-2.9997-2.9997-2.9997s-2.9997 1.343-2.9997 2.9997 1.343 2.9997 2.9997 2.9997 2.9997-1.343 2.9997-2.9997zM10.272 20.4625c-.4008 0-.7776-.156-1.0609-.4392l-.368-.3679-.8435.8417 3.4996 3.4996h5.5003c.5522 0 .9999-.4477.9999-.9999v-7.3899L11.1045 20.21a1.4944 1.4944 0 0 1-.8325.2525z"/></symbol>
-                <symbol id="ic-claude" viewBox="0 0 24 24"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></symbol>
-                <symbol id="ic-openai" viewBox="0 0 24 24"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></symbol>
-                <symbol id="ic-kimi" viewBox="0 0 24 24"><path d="M21.765.351C22.998.351 24 1.353 24 2.586S22.998 4.82 21.765 4.82h-1.974c-.15 0-.26-.12-.26-.26V2.586A2.237 2.237 0 0 1 21.765.35M9.41 13.388l8.447-8.377c.16-.16.07-.471-.14-.471h-4.55s-.1.02-.14.06l-9.099 9.029c-.14.14-.35.02-.35-.21V4.81c0-.15-.1-.27-.221-.27H.22c-.12 0-.22.12-.22.27v18.57c0 .15.1.27.22.27h3.137c.12 0 .22-.12.22-.27v-3.79c0-.08.03-.16.08-.21l2.826-2.796c.07-.07.16-.08.241-.03l7.546 5.551a8.9 8.9 0 0 0 4.018 1.493c.12.01.23-.11.23-.27V19.76c0-.14-.08-.25-.19-.26a5.8 5.8 0 0 1-2.355-.942l-6.533-4.73c-.14-.09-.15-.32-.03-.441"/></symbol>
-                <symbol id="ic-opencode" viewBox="0 0 24 24"><path d="M22 24H2V0h20zM17 4.8H7v14.4h10z"/></symbol>
-              </defs>
-
-              <!-- Board & tracker -->
-              <rect class="dg-box" x="20" y="30" width="210" height="230" rx="10"/>
-              <text class="dg-eyebrow" x="38" y="56">BOARD &amp; TRACKER</text>
-              <line class="dg-hr" x1="38" y1="70" x2="212" y2="70"/>
-              <use href="#ic-github" x="38" y="85" width="18" height="18" class="dg-icon"/>
-              <text class="dg-row-label" x="66" y="100">GitHub</text>
-              <use href="#ic-jira" x="38" y="125" width="18" height="18" class="dg-icon"/>
-              <text class="dg-row-label" x="66" y="140">Jira</text>
-              <use href="#ic-azuredevops" x="38" y="165" width="18" height="18" class="dg-icon"/>
-              <text class="dg-row-label" x="66" y="180">Azure DevOps</text>
-
-              <!-- OpenFactory hub -->
-              <rect class="dg-box dg-box-hub" x="395" y="30" width="210" height="230" rx="10"/>
-              <g class="dg-icon">
-                <circle cx="470" cy="76" r="7"/><circle cx="494" cy="76" r="7"/><circle cx="518" cy="76" r="7"/>
-                <circle cx="470" cy="100" r="7"/><circle cx="494" cy="100" r="7"/>
-                <circle cx="470" cy="124" r="7"/>
-              </g>
-              <text class="dg-hub-title" x="500" y="152" text-anchor="middle">OpenFactory</text>
-              <rect class="dg-pill" x="411" y="170" width="79" height="22" rx="11"/>
-              <text class="dg-pill-text" x="450.5" y="184.5" text-anchor="middle">tech-lead</text>
-              <rect class="dg-pill" x="500" y="170" width="79" height="22" rx="11"/>
-              <text class="dg-pill-text" x="539.5" y="184.5" text-anchor="middle">product</text>
-              <rect class="dg-pill dg-pill-human" x="446" y="200" width="108" height="24" rx="12"/>
-              <text class="dg-pill-text dg-pill-human-text" x="500" y="215.5" text-anchor="middle">you decide</text>
-
-              <!-- Harness -->
-              <rect class="dg-box" x="770" y="30" width="210" height="230" rx="10"/>
-              <text class="dg-eyebrow" x="788" y="56">HARNESS</text>
-              <line class="dg-hr" x1="788" y1="70" x2="962" y2="70"/>
-              <use href="#ic-claude" x="788" y="85" width="18" height="18" class="dg-icon"/>
-              <text class="dg-row-label" x="816" y="100">Claude Code</text>
-              <use href="#ic-openai" x="788" y="125" width="18" height="18" class="dg-icon"/>
-              <text class="dg-row-label" x="816" y="140">Codex</text>
-              <use href="#ic-kimi" x="788" y="165" width="18" height="18" class="dg-icon"/>
-              <text class="dg-row-label" x="816" y="180">Kimi</text>
-              <use href="#ic-opencode" x="788" y="205" width="18" height="18" class="dg-icon"/>
-              <text class="dg-row-label" x="816" y="220">OpenCode</text>
-
-              <!-- Forge -->
-              <rect class="dg-box" x="290" y="330" width="200" height="130" rx="10"/>
-              <text class="dg-eyebrow" x="308" y="356">FORGE · OPENS THE PR</text>
-              <line class="dg-hr" x1="308" y1="370" x2="472" y2="370"/>
-              <use href="#ic-github" x="308" y="385" width="16" height="16" class="dg-icon"/>
-              <text class="dg-row-label" x="333" y="399">GitHub</text>
-              <use href="#ic-azuredevops" x="308" y="418" width="16" height="16" class="dg-icon"/>
-              <text class="dg-row-label" x="333" y="432">Azure DevOps</text>
-
-              <!-- CI/CD -->
-              <rect class="dg-box" x="560" y="330" width="220" height="130" rx="10"/>
-              <text class="dg-eyebrow" x="578" y="356">CI/CD · THE CLIENT'S OWN</text>
-              <line class="dg-hr" x1="578" y1="370" x2="762" y2="370"/>
-              <use href="#ic-githubactions" x="578" y="385" width="16" height="16" class="dg-icon"/>
-              <text class="dg-row-label" x="603" y="399">GitHub Actions</text>
-              <use href="#ic-azurepipelines" x="578" y="418" width="16" height="16" class="dg-icon"/>
-              <text class="dg-row-label" x="603" y="432">Azure Pipelines</text>
-
-              <!-- Arrows: board <-> hub -->
-              <line class="dg-line" x1="234" y1="145" x2="391" y2="145" marker-start="url(#dg-arrow)" marker-end="url(#dg-arrow)"/>
-              <text class="dg-line-label" x="312.5" y="133" text-anchor="middle">ticket in · status back</text>
-
-              <!-- Arrows: hub <-> harness -->
-              <line class="dg-line" x1="609" y1="145" x2="766" y2="145" marker-start="url(#dg-arrow)" marker-end="url(#dg-arrow)"/>
-              <text class="dg-line-label" x="687.5" y="133" text-anchor="middle">dispatch · diff back</text>
-
-              <!-- Arrow: hub -> forge -->
-              <line class="dg-line" x1="465" y1="263" x2="398" y2="326" marker-end="url(#dg-arrow)"/>
-              <text class="dg-line-label" x="392" y="298" text-anchor="middle">opens</text>
-              <text class="dg-line-label" x="392" y="311" text-anchor="middle">the PR</text>
-
-              <!-- Arrow: forge -> ci/cd -->
-              <line class="dg-line" x1="494" y1="395" x2="556" y2="395" marker-end="url(#dg-arrow)"/>
-              <text class="dg-line-label" x="525" y="385" text-anchor="middle">triggers</text>
-
-              <!-- Arrow: ci/cd -> hub (observe only, dashed) -->
-              <line class="dg-line-observe" x1="655" y1="326" x2="558" y2="263" marker-end="url(#dg-arrow)"/>
-              <text class="dg-line-label" x="655" y="288" text-anchor="middle">observes,</text>
-              <text class="dg-line-label" x="655" y="301" text-anchor="middle">never deploys</text>
-            </svg>
-            <figcaption>
-              OpenFactory writes the ticket status and the PR; it only ever <em>watches</em> the
-              client's own CI/CD. The dashed line is the one arrow it never turns solid.
-            </figcaption>
-          </figure>
-        </div>
-
-        <div class="pipeline-branches">
-          <div class="branch-card">
-            <span class="branch-tag">on any impediment</span>
-            <h3>The tech-lead steps in</h3>
-            <p>
-              Parks the ticket instead of retrying blindly, and routes the failure to whoever (or
-              whatever) actually fixes it. See <a href="#autonomy">how it manages that risk</a>.
-            </p>
-          </div>
-          <div class="branch-card">
-            <span class="branch-tag">requirements in</span>
-            <h3>The product role, from Slack</h3>
-            <p>
-              Talks to the client, proposes what enters the queue, and turns a conversation into a
-              tracked commitment. See <a href="#roles">roles</a>.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -521,67 +381,9 @@ model:
             <h3>Token efficiency</h3>
             <p>
               OpenFactory keeps an internal index of the codebase, so agents spend less time
-              hunting for the right file before they start. Measured once, honestly, on one task
-              run twice each way:
+              hunting for the right file before they start. The measured numbers, caveats
+              included, are on <a href="/index.html#numbers">the homepage</a>.
             </p>
-
-            <div class="token-compare">
-              <div class="token-compare-legend">
-                <span class="legend-item"><span class="legend-swatch legend-without"></span>Without the map</span>
-                <span class="legend-item"><span class="legend-swatch legend-with"></span>With OpenFactory</span>
-              </div>
-
-              <div class="token-metric">
-                <div class="token-metric-head">
-                  <span class="token-metric-name">Searches per task</span>
-                  <span class="token-delta">−32%</span>
-                </div>
-                <div class="token-bar-row">
-                  <div class="token-bar-track"><div class="token-bar-fill fill-without" style="width:100%"></div></div>
-                  <span class="token-bar-value">20.5</span>
-                </div>
-                <div class="token-bar-row">
-                  <div class="token-bar-track"><div class="token-bar-fill fill-with" style="width:68%"></div></div>
-                  <span class="token-bar-value">14.0</span>
-                </div>
-              </div>
-
-              <div class="token-metric">
-                <div class="token-metric-head">
-                  <span class="token-metric-name">Agent turns</span>
-                  <span class="token-delta">−30%</span>
-                </div>
-                <div class="token-bar-row">
-                  <div class="token-bar-track"><div class="token-bar-fill fill-without" style="width:100%"></div></div>
-                  <span class="token-bar-value">21.5</span>
-                </div>
-                <div class="token-bar-row">
-                  <div class="token-bar-track"><div class="token-bar-fill fill-with" style="width:70%"></div></div>
-                  <span class="token-bar-value">15.0</span>
-                </div>
-              </div>
-
-              <div class="token-metric">
-                <div class="token-metric-head">
-                  <span class="token-metric-name">Cost per task</span>
-                  <span class="token-delta">−40%</span>
-                </div>
-                <div class="token-bar-row">
-                  <div class="token-bar-track"><div class="token-bar-fill fill-without" style="width:100%"></div></div>
-                  <span class="token-bar-value">$0.52</span>
-                </div>
-                <div class="token-bar-row">
-                  <div class="token-bar-track"><div class="token-bar-fill fill-with" style="width:60%"></div></div>
-                  <span class="token-bar-value">$0.31</span>
-                </div>
-              </div>
-
-              <p class="token-compare-caveat">
-                One task, n=2 per arm: a directional signal, not a proof. Both arms landed on the
-                exact same correct fix. It stays off for every project until it's proven at
-                production scale.
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -651,8 +453,8 @@ model:
       </div>
     </section>
 
-    <!-- ============ NUMBERS ============ -->
-    <section id="numbers">
+    <!-- ============ RECEIPTS ============ -->
+    <section id="receipts">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Also true today</span>
@@ -742,7 +544,7 @@ model:
             <ul>
               <li><a href="/index.html">Home</a></li>
               <li><a href="https://github.com/Open-Factory-Digital" target="_blank" rel="noopener">GitHub</a></li>
-              <li><a href="#numbers">Numbers</a></li>
+              <li><a href="/index.html#numbers">Numbers</a></li>
               <li><a href="#limits">Limits</a></li>
             </ul>
           </div>
