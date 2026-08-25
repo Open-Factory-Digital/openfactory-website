@@ -564,6 +564,10 @@ section + section {
   display: block;
 }
 
+.media-video-static {
+  display: none;
+}
+
 .placeholder-inner {
   display: flex;
   flex-direction: column;
@@ -1462,6 +1466,14 @@ td code, p code {
 }
 
 @media (max-width: 640px) {
+  .media-video-motion {
+    display: none;
+  }
+
+  .media-video-static {
+    display: block;
+  }
+
   .feature-grid {
     grid-template-columns: 1fr;
   }
