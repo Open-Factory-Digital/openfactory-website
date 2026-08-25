@@ -1466,11 +1466,11 @@ td code, p code {
 }
 
 @media (max-width: 640px) {
-  .media-video-motion {
+  .media-video .media-video-motion {
     display: none;
   }
 
-  .media-video-static {
+  .media-video .media-video-static {
     display: block;
   }
 
