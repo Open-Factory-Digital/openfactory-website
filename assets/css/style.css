@@ -564,7 +564,7 @@ section + section {
   display: block;
 }
 
-.media-video-static {
+.media-video .media-video-static {
   display: none;
 }
 
