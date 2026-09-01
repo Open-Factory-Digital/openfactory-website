@@ -56,6 +56,7 @@
       <nav class="site-nav" id="siteNav">
         <div class="nav-links">
           <ul>
+            <li><a href="#install">Install</a></li>
             <li><a href="#capacity">Why OpenFactory</a></li>
             <li><a href="#integrations">Integrations</a></li>
             <li><a href="#numbers">Numbers</a></li>
@@ -95,23 +96,24 @@
             </p>
           </div>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="https://github.com/Open-Factory-Digital/openfactory-core" target="_blank" rel="noopener">
+            <a class="btn btn-primary" href="#install">Install it</a>
+            <a class="btn btn-secondary" href="https://github.com/Open-Factory-Digital/openfactory-core" target="_blank" rel="noopener">
               View on GitHub
             </a>
             <a class="btn btn-secondary" href="/how-it-works.html">See how it works</a>
           </div>
           <div class="hero-badges">
             <span class="badge">Apache-2.0</span>
-            <span class="badge">4,606 tests passing</span>
+            <a class="badge" href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/STATUS.md" target="_blank" rel="noopener">Test count: docs/STATUS.md</a>
             <span class="badge">No cloud account required</span>
           </div>
         </div>
         <div class="hero-media">
           <div class="terminal">
-            <span class="label">Get started</span>
-            <pre><span class="cmd">openfactory project init myapp ~/code/myapp</span>
-<span class="out"># registers the project, creates the board,
-# scaffolds .sdlc/project.yaml</span></pre>
+            <span class="label">Docker, and nothing else</span>
+            <pre><span class="cmd">curl -fsSL https://openfactory.digital/install.sh | sh</span>
+<span class="out"># pulls the published images, asks only what it
+# cannot infer, and leaves the panel on :8787</span></pre>
           </div>
         </div>
       </div>
@@ -508,11 +510,85 @@
       </div>
     </section>
 
+    <!-- ============ INSTALL ============ -->
+    <!-- The one-liner below is the same string as openfactory-core's README install block, and
+         the two notes are carried from it word for word. Two surfaces that teach the same
+         command must not be able to disagree; when the core's release workflow starts publishing
+         this region (plan 01, P3.2) it rewrites it from the README rather than from a memory of
+         it. Until then: edit the README first, then mirror it here. -->
+    <section id="install" class="section-muted">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Install</span>
+          <h2>Docker. Only Docker.</h2>
+          <p>
+            No Python on the host, no <code>sudo</code>, one line. It pulls the published images,
+            asks only what it cannot infer from the machine, and leaves the panel running on
+            <code>http://localhost:8787</code>.
+          </p>
+        </div>
+
+        <div class="code-block">
+          <span class="label">One line</span>
+          <pre>curl -fsSL https://openfactory.digital/install.sh | sh</pre>
+        </div>
+
+        <div class="table-scroll">
+          <table class="install-table">
+            <tbody>
+              <tr>
+                <td><strong>read it first</strong></td>
+                <td><code>curl -fsSL https://openfactory.digital/install.sh -o install.sh &amp;&amp; less install.sh &amp;&amp; sh install.sh</code></td>
+              </tr>
+              <tr>
+                <td><strong>no script at all</strong></td>
+                <td>
+                  the same steps by hand —
+                  <a href="https://github.com/Open-Factory-Digital/openfactory-core#install" target="_blank" rel="noopener">the commands are in the README</a>,
+                  pinned to a release and verified against its checksums
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="install-note">
+          The worker mounts the host's Docker socket — that is how <code>sandbox: container</code>
+          starts a box, and it is root-equivalent on the host. It is the same trade
+          <code>docker compose up</code> has always made here.
+        </p>
+        <p class="install-note">
+          The installer sends nothing anywhere. There is no telemetry in this project.
+        </p>
+
+        <p class="install-after">
+          Re-running the installer is the upgrade path: it resolves the newest release, pulls it,
+          and restarts the stack. Your answers and your data survive it.
+        </p>
+
+        <div class="code-block">
+          <span class="label">Then register a project, inside the worker</span>
+          <pre>docker compose --env-file .env.compose exec worker openfactory project init myapp https://github.com/&lt;owner&gt;/myapp.git</pre>
+        </div>
+        <p class="install-after">
+          That registers the project, creates the board with the platform's columns, and scaffolds
+          <code>.openfactory/project.yaml</code>. Then
+          <code>openfactory doctor myapp</code> names everything still missing, one line each with
+          a remedy — including the two credentials nobody can infer for you: the coding agent's and
+          a forge credential.
+        </p>
+      </div>
+    </section>
+
     <!-- ============ CTA ============ -->
     <section class="cta-band">
       <div class="container">
         <h2>Apache-2.0. Runs on your own machines.</h2>
         <p>Read the code, run the tests, check the commands yourself.</p>
+        <div class="code-block">
+          <span class="label">Docker, and nothing else</span>
+          <pre>curl -fsSL https://openfactory.digital/install.sh | sh</pre>
+        </div>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://github.com/Open-Factory-Digital/openfactory-core" target="_blank" rel="noopener">
             View on GitHub

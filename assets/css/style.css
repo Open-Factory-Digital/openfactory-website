@@ -316,6 +316,18 @@ p {
   padding: 5px 12px;
 }
 
+/* A badge that is a link, not a claim. A test count typed here would be a number with a second
+   home; docs/STATUS.md is its only one, so the badge points at it instead of repeating it. */
+a.badge {
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+a.badge:hover {
+  border-color: var(--gray-500);
+  color: var(--ink);
+}
+
 /* ---------- Terminal / code blocks ---------- */
 
 .terminal {
@@ -344,9 +356,15 @@ p {
   word-break: break-word;
 }
 
+/* The prompt is decoration and must never land in the clipboard: these blocks carry the install
+   one-liner, and a pasted "$ curl …" is a command that fails. Generated content is copied by
+   some engines (Chromium has done so for years) and excluded by others; `user-select: none` is
+   what makes the answer the same everywhere. */
 .terminal .cmd::before {
   content: "$ ";
   color: #6EE7B7;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .terminal .out {
@@ -381,6 +399,8 @@ p {
 .code-block pre .cmd::before {
   content: "$ ";
   color: #6EE7B7;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* ---------- Sections ---------- */
@@ -395,6 +415,65 @@ section + section {
 
 .section-muted {
   background: var(--gray-100);
+}
+
+/* The header is sticky and 72px tall, so a bare `#install` jump parks the heading underneath it.
+   openfactory.digital/#install is a link people paste; it has to land on something readable. */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+/* ---------- Install block ---------- */
+
+.install-table a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--gray-300);
+  text-underline-offset: 2px;
+}
+
+.install-table td:first-child {
+  white-space: nowrap;
+  color: var(--gray-600);
+}
+
+/* The "read it first" command is one long token; it breaks visually so the row fits, and a soft
+   break puts no character in the clipboard — what is copied is still one line. */
+.install-table td code {
+  overflow-wrap: anywhere;
+}
+
+/* Carried word for word from the core README. Set apart the way the README sets them apart,
+   because a reader who finds these on Hacker News first should find them here first too. */
+.install-note {
+  max-width: 78ch;
+  margin: var(--space-3) 0 0;
+  padding-left: var(--space-2);
+  border-left: 2px solid var(--gray-300);
+  color: var(--gray-600);
+  font-size: 0.95rem;
+}
+
+.install-after {
+  max-width: 78ch;
+  margin-top: var(--space-3);
+  font-size: 0.9rem;
+  color: var(--gray-600);
+}
+
+#install .code-block {
+  margin-top: var(--space-3);
+}
+
+/* The one-liner is 53 characters and a 320px phone gives a code block 272px of room: left to the
+   default `.code-block` rules it would sit in a sideways scroller, i.e. the most important string
+   on the page half-hidden on the device most likely to meet it first. Wrapping is what `.terminal
+   pre` already does. A soft wrap puts no character into the selection, so the command still
+   copies as one line — measured, not assumed. */
+#install .code-block pre,
+.cta-band .code-block pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 /* ---------- Technical page intro (how-it-works.html) ---------- */
@@ -1296,6 +1375,26 @@ td code, p code {
 
 .cta-band .btn-primary:hover {
   background: var(--gray-100);
+}
+
+/* `.container` here is a centred flex column, so a flex item sizes to its content — an unbounded
+   `pre` would push the page wider than the viewport. The width cap is what keeps the one-liner
+   scrolling inside its own box instead of scrolling the document. The band is already ink, so the
+   block lifts one step rather than disappearing into it. */
+.cta-band .code-block {
+  width: 100%;
+  max-width: 640px;
+  margin-top: 0;
+}
+
+.cta-band .code-block pre {
+  background: var(--ink-soft);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  text-align: left;
+}
+
+.cta-band .code-block .label {
+  color: var(--gray-500);
 }
 
 /* ---------- Footer ---------- */
