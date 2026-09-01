@@ -1143,6 +1143,15 @@ section[id] {
   color: var(--ink);
 }
 
+/* The axis paragraph links out to docs/STATUS.md instead of typing a count; without this the
+   link inherits `a { color: inherit }` and reads as plain body text. */
+.claim > div > p a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--gray-300);
+  text-underline-offset: 2px;
+}
+
 .claim-note a {
   color: var(--ink);
   text-decoration: underline;
