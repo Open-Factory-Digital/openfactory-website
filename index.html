@@ -363,77 +363,156 @@
     <section id="numbers">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Proven, not promised</span>
-          <h2>Less searching. Less spend.</h2>
+          <!-- "Proven" was the old eyebrow and it is not what n=8 buys. The core's own readout
+               refuses to draw the conclusion for you: openfactory/api/metrics_view.py:157-160 —
+               "The `delta` is a plain arithmetic difference between the treatment and its control,
+               NOT a verdict … A human judges." -->
+          <span class="eyebrow">Measured, not promised</span>
+          <!-- The headline states the null result rather than burying it (see the wall-clock row
+               below): three wins and a flat measure quietly dropped is selective reporting. -->
+          <h2>Cheaper per ticket. Not faster.</h2>
           <p>
             An internal index means the agent isn't rediscovering your codebase from scratch on
-            every ticket. Measured on one task, run twice each way:
+            every ticket. Measured as an A/B on <strong>one production codebase</strong> — the same
+            factory, the map withheld and then injected — <strong>n&nbsp;=&nbsp;8 tickets per
+            arm</strong>, medians, scanned 2026-09-01:
           </p>
         </div>
 
         <div class="token-compare">
+          <!-- The arm names are the platform's own, not marketing labels for them:
+               docs/knowledge-layer.md:578-582 defines `off` ("the map was withheld ON PURPOSE")
+               and `injected` ("the module map was in the agent's context"). The previous legend
+               said "With OpenFactory", which was wrong in a way that mattered — BOTH arms are
+               OpenFactory; the map is the only variable. -->
           <div class="token-compare-legend">
-            <span class="legend-item"><span class="legend-swatch legend-without"></span>Without the map</span>
-            <span class="legend-item"><span class="legend-swatch legend-with"></span>With OpenFactory</span>
+            <span class="legend-item"><span class="legend-swatch legend-without"></span>Map off (control)</span>
+            <span class="legend-item"><span class="legend-swatch legend-with"></span>Map injected</span>
           </div>
 
+          <!-- TOKENS LEAD, and that is the platform's own rule rather than a presentation choice:
+               openfactory/api/metrics_view.py:151-155 — "TOKENS ARE THE HEADLINE MEASURE, not cost.
+               The claim being tested is that the map makes the agent read less to find the same
+               code, and tokens measure that directly. Cost is a derived number that moves with
+               per-model pricing and is simply absent for a harness that reports no price (Codex),
+               so an experiment resting on cost alone would be unreadable the moment the arms ran
+               on different engines."
+               Cost's −36.2% is the bigger and more flattering number. It does not lead. -->
           <div class="token-metric">
             <div class="token-metric-head">
-              <span class="token-metric-name">Searches per task</span>
-              <span class="token-delta">−32%</span>
+              <span class="token-metric-name">Tokens per ticket</span>
+              <span class="token-delta">−22.0%</span>
             </div>
             <div class="token-bar-row">
               <div class="token-bar-track"><div class="token-bar-fill fill-without" style="width:100%"></div></div>
-              <span class="token-bar-value">20.5</span>
+              <span class="token-bar-value">75,175</span>
             </div>
             <div class="token-bar-row">
-              <div class="token-bar-track"><div class="token-bar-fill fill-with" style="width:68%"></div></div>
-              <span class="token-bar-value">14.0</span>
-            </div>
-          </div>
-
-          <div class="token-metric">
-            <div class="token-metric-head">
-              <span class="token-metric-name">Agent turns</span>
-              <span class="token-delta">−30%</span>
-            </div>
-            <div class="token-bar-row">
-              <div class="token-bar-track"><div class="token-bar-fill fill-without" style="width:100%"></div></div>
-              <span class="token-bar-value">21.5</span>
-            </div>
-            <div class="token-bar-row">
-              <div class="token-bar-track"><div class="token-bar-fill fill-with" style="width:70%"></div></div>
-              <span class="token-bar-value">15.0</span>
+              <div class="token-bar-track"><div class="token-bar-fill fill-with" style="width:78%"></div></div>
+              <span class="token-bar-value">58,655</span>
             </div>
           </div>
 
           <div class="token-metric">
             <div class="token-metric-head">
-              <span class="token-metric-name">Cost per task</span>
-              <span class="token-delta">−40%</span>
+              <span class="token-metric-name">Agent turns per ticket</span>
+              <span class="token-delta">−30.8%</span>
             </div>
             <div class="token-bar-row">
               <div class="token-bar-track"><div class="token-bar-fill fill-without" style="width:100%"></div></div>
-              <span class="token-bar-value">$0.52</span>
+              <span class="token-bar-value">138</span>
             </div>
             <div class="token-bar-row">
-              <div class="token-bar-track"><div class="token-bar-fill fill-with" style="width:60%"></div></div>
-              <span class="token-bar-value">$0.31</span>
+              <div class="token-bar-track"><div class="token-bar-fill fill-with" style="width:69%"></div></div>
+              <span class="token-bar-value">95.5</span>
             </div>
           </div>
 
-          <!-- The knowledge map is ON BY DEFAULT and has been since 2026-08-02. It shipped opt-in
-               behind exactly the A/B this caveat used to promise, and the A/B concluded:
-               · openfactory/contracts/manifest.py:244 — knowledge_map: bool = True
-               · openfactory/contracts/manifest.py:232-235 — "ON BY DEFAULT since 2026-08-02
-                 (ADR-0035). It shipped opt-in with an A/B behind it, on the rule that the layer
-                 does not advance until cost per ticket drops. It dropped."
-               · docs/adr/0035-knowledge-layer-on-by-default.md:3 — Status: Accepted (2026-08-02)
-               The first sentence below is left exactly as it was: the measurement it describes
-               belongs to the product owner, who is assembling that data (plan 02 §6). -->
+          <!-- BEGIN cost-per-ticket (plan 03 Q1 — deletable as a unit) -->
+          <!-- THE ONLY ABSOLUTE CURRENCY FIGURES ON THE SITE. If the product owner decides the
+               per-ticket USD medians are a commercial disclosure rather than a technical one,
+               delete everything between the BEGIN and END sentinels, inclusive. The page is then
+               correct with three metrics and NO currency amount survives anywhere in it — not in
+               the markup and not in a comment, which is why this explanation lives inside the
+               sentinels rather than above them: a served HTML comment is readable by anyone who
+               views source, so a rationale that restated the figure would defeat its own removal.
+               Published per plan 03's recommendation: the same percentage on a small base and on
+               a large one are not the same claim, and a bare percentage invites the reader to
+               assume the smaller one. -->
+          <div class="token-metric">
+            <div class="token-metric-head">
+              <span class="token-metric-name">Cost per ticket</span>
+              <span class="token-delta">−36.2%</span>
+            </div>
+            <div class="token-bar-row">
+              <div class="token-bar-track"><div class="token-bar-fill fill-without" style="width:100%"></div></div>
+              <span class="token-bar-value">$11.70</span>
+            </div>
+            <div class="token-bar-row">
+              <div class="token-bar-track"><div class="token-bar-fill fill-with" style="width:64%"></div></div>
+              <span class="token-bar-value">$7.47</span>
+            </div>
+          </div>
+          <!-- END cost-per-ticket -->
+
+          <!-- THE NULL RESULT, on the page beside the wins. Wall-clock did not move (+1.1%), and
+               this is the one row whose treatment bar is LONGER than its control, so the bars are
+               normalised to the larger value (3,309 s = 100%, 3,272 s = 99%) instead of pinning
+               the control at 100% as the three rows above do. Same metaphor either way — a longer
+               bar is more of the thing being measured. -->
+          <div class="token-metric">
+            <div class="token-metric-head">
+              <span class="token-metric-name">Wall-clock per ticket</span>
+              <span class="token-delta token-delta-null">+1.1%</span>
+            </div>
+            <div class="token-bar-row">
+              <div class="token-bar-track"><div class="token-bar-fill fill-without" style="width:99%"></div></div>
+              <span class="token-bar-value">3,272 s</span>
+            </div>
+            <div class="token-bar-row">
+              <div class="token-bar-track"><div class="token-bar-fill fill-with" style="width:100%"></div></div>
+              <span class="token-bar-value">3,309 s</span>
+            </div>
+          </div>
+
+          <p class="token-compare-null">
+            Wall-clock did not move. The map buys a cheaper ticket, not a quicker one — and the
+            measure that stayed flat is here because leaving it out would make the other three
+            mean less than they do.
+          </p>
+
+          <!-- WHAT EACH FIGURE RESTS ON.
+               · the four medians and their deltas: the live metrics table, scanned 2026-09-01,
+                 arms `off` (control) vs `injected` (treatment), n = 8 tickets per arm.
+               · the method — arm definitions, median alongside mean, and which tickets are
+                 excluded — docs/knowledge-layer.md § "The A/B is now measurable" (:573-595), and
+                 openfactory/api/metrics_view.py:164-167 for `pre_okf` being a baseline kept out
+                 of the comparison entirely.
+               · "medians" rather than means: openfactory/api/metrics_view.py:135-136 — "ticket
+                 sizes vary enormously, so one large ticket landing in a small arm moves the mean
+                 and proves nothing."
+               · "one production codebase" and the refusal to generalise:
+                 docs/knowledge-layer.md:600-603 — "the number that justified this was measured on
+                 one repository, so the first enterprise deployment should retake it rather than
+                 inherit it."
+               · on by default since 2026-08-02: contracts/manifest.py:244 and :232-235, and
+                 docs/adr/0035-knowledge-layer-on-by-default.md:3 (Accepted 2026-08-02).
+
+               AHEAD OF ITS SOURCE, 2026-09-01. The linked document carries the METHOD today but
+               not yet this TABLE OF NUMBERS; plan 03 C1 adds it to the core repo, and C1 must
+               land before this page is published or the link cites a document that does not say
+               it. The figures previously shown here were a DIFFERENT and narrower measurement —
+               docs/knowledge-layer.md:36-38, a POC on "a 'locate the code' task", one task rather
+               than a per-ticket A/B, and its absolutes were an order of magnitude away from these.
+               Promoting that into a general claim was the defect; the digits were only its
+               symptom, which is why the framing changed with them. -->
           <p class="token-compare-caveat">
-            One task, n=2 per arm: a directional signal, not a proof yet. It has been on by default
-            since 2026-08-02, when the A/B it shipped behind showed the cost per ticket had fallen.
+            n&nbsp;=&nbsp;8 tickets per arm on one production codebase: a directional signal, not a
+            proof yet. The arms, the method and what is excluded from the comparison are in
+            <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/knowledge-layer.md" target="_blank" rel="noopener">docs/knowledge-layer.md</a>;
+            the platform's own readout computes no verdict from them, deliberately, because
+            comparing arms is only valid if the ticket mix is comparable and nothing in the code
+            can know that.
           </p>
         </div>
       </div>
