@@ -338,8 +338,8 @@
               </table>
             </div>
             <p class="table-source">
-              Straight from the registry (<code>sdlc/adapters/tracker/registry.py</code>), not a
-              claim copied into a webpage.
+              Straight from the registry (<code>openfactory/adapters/tracker/registry.py</code>),
+              not a claim copied into a webpage.
             </p>
             <p class="claim-note">
               Proven end to end, not just wired. GitHub: a ticket to a merged PR, and a live
@@ -361,7 +361,7 @@
               per-role axis: a model grading its own work is not a review.
             </p>
             <div class="code-block">
-              <span class="label">.sdlc/project.yaml</span>
+              <span class="label">.openfactory/project.yaml</span>
               <pre>harness: opencode
 model:
   executor: eu.anthropic.claude-sonnet-5
@@ -466,10 +466,16 @@ model:
           </p>
         </div>
 
+        <!-- No number is typed here. A test count and an ADR count each have exactly one home in
+             the platform — docs/STATUS.md and docs/adr/ — and a figure retyped on a third surface
+             is wrong the moment either moves, with nothing able to notice. Link, do not copy. -->
         <p class="numbers-footnote">
-          <code>pytest -q</code> passes all 4,606 tests, in fixed and randomised order · 41
-          architecture decision records · providers proven live on GitHub, Jira and Azure DevOps ·
-          Apache-2.0.
+          <code>pytest -q</code> passes in fixed and randomised order — the count, and the commit
+          it was measured at, live in
+          <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/STATUS.md" target="_blank" rel="noopener">docs/STATUS.md</a> ·
+          every architecture decision is written down in
+          <a href="https://github.com/Open-Factory-Digital/openfactory-core/tree/main/docs/adr" target="_blank" rel="noopener">docs/adr/</a> ·
+          providers proven live on GitHub, Jira and Azure DevOps · Apache-2.0.
         </p>
       </div>
     </section>
