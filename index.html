@@ -422,9 +422,18 @@
             </div>
           </div>
 
+          <!-- The knowledge map is ON BY DEFAULT and has been since 2026-08-02. It shipped opt-in
+               behind exactly the A/B this caveat used to promise, and the A/B concluded:
+               · openfactory/contracts/manifest.py:244 — knowledge_map: bool = True
+               · openfactory/contracts/manifest.py:232-235 — "ON BY DEFAULT since 2026-08-02
+                 (ADR-0035). It shipped opt-in with an A/B behind it, on the rule that the layer
+                 does not advance until cost per ticket drops. It dropped."
+               · docs/adr/0035-knowledge-layer-on-by-default.md:3 — Status: Accepted (2026-08-02)
+               The first sentence below is left exactly as it was: the measurement it describes
+               belongs to the product owner, who is assembling that data (plan 02 §6). -->
           <p class="token-compare-caveat">
-            One task, n=2 per arm: a directional signal, not a proof yet. It stays off for every
-            project until a production A/B confirms it at scale.
+            One task, n=2 per arm: a directional signal, not a proof yet. It has been on by default
+            since 2026-08-02, when the A/B it shipped behind showed the cost per ticket had fallen.
           </p>
         </div>
       </div>
