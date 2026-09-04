@@ -1041,6 +1041,16 @@ section[id] {
   padding: 2px 10px;
 }
 
+/* The measure that did not move. Muted rather than red: +1.1% on wall-clock is a NULL result, not
+   a regression, and colouring it as a failure would overstate it in the opposite direction from
+   the one this block exists to correct. */
+.token-delta-null {
+  color: var(--gray-500);
+  background: var(--gray-100);
+  border-color: var(--gray-200);
+  font-weight: 600;
+}
+
 .token-bar-row {
   display: flex;
   align-items: center;
@@ -1070,13 +1080,25 @@ section[id] {
   background: var(--ink);
 }
 
+/* 54px fitted "20.5" and "$0.52". The measured medians are wider — "75,175" and "3,309 s" — and a
+   value column that wraps turns a bar chart into a ragged list. */
 .token-bar-value {
   font-family: var(--font-mono);
   font-size: 0.82rem;
   color: var(--gray-600);
-  width: 54px;
+  width: 64px;
   text-align: right;
   flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* The null result reads as prose, not as a caveat — it is a finding, and it sits above the
+   sample-size line rather than inside it. */
+.token-compare-null {
+  margin: var(--space-3) 0 0;
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  max-width: 68ch;
 }
 
 .token-compare-caveat {
@@ -1141,6 +1163,15 @@ section[id] {
 
 .claim-note strong {
   color: var(--ink);
+}
+
+/* The axis paragraph links out to docs/STATUS.md instead of typing a count; without this the
+   link inherits `a { color: inherit }` and reads as plain body text. */
+.claim > div > p a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--gray-300);
+  text-underline-offset: 2px;
 }
 
 .claim-note a {

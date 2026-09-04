@@ -127,11 +127,18 @@
               what it should do, and only a person moving something from observed to accepted
               creates a promise.
             </p>
+            <!-- SOURCE (openfactory-core, public tree):
+                 · adapters/channel/registry.py:21 — DEFAULT_KIND = "panel"
+                 · adapters/channel/registry.py:41-43 — CHANNELS holds that one row and no other;
+                   the module docstring:3 is "THE TABLE HOLDS THE PANEL AND NOTHING ELSE."
+                 · docs/STATUS.md:85 — "the panel is the reference surface (ADR-0038); the Slack
+                   connector leaves the public tree as openfactory-slack — a channel is an add-on,
+                   never a prerequisite"
+                 · docs/reference/product-role.md:4 — the panel surface at /product/<name> -->
             <p class="claim-note">
               The conversation reaches it over a channel adapter, so the chat client is a
-              configuration choice rather than a dependency. Slack is the adapter that ships for
-              this role today, and its surface inside the platform is being built; see
-              <a href="#limits">limits</a>.
+              configuration choice rather than a dependency. The panel is the reference surface and
+              it ships; a chat channel such as Slack is an add-on package, never a prerequisite.
             </p>
           </div>
         </div>
@@ -244,10 +251,21 @@
         <div class="feature-grid">
           <div class="feature">
             <h3>It refuses to work in the dark</h3>
+            <!-- NARROWED, not deleted — the claim is true where it matters and the sentence used
+                 to overreach ("Nothing runs until…"). The pickup gate is container-only:
+                 · openfactory/box_prove.py:999-1000 — gate_reason returns None when
+                   box_traits(sandbox).honours_image is false
+                 · openfactory/box_prove.py:980-983 — "ONLY WHERE THERE IS SOMETHING TO PROVE. A
+                   `worktree` box has no image and no toolbox; a `fargate` job runs inside a task
+                   whose image is baked into the task definition."
+                 · docs/STATUS.md:168 — "`openfactory box prove` exists and gates pickup — on the
+                   `container` box only." -->
             <p>
-              Nothing runs until the box is proven: the project's own image, its setup and its
-              gates, executed once with no agent and no tokens spent. A box that cannot build the
-              project is a fact you want before an agent spends four hours discovering it.
+              On the container box, nothing runs until the box is proven: the project's own image,
+              its setup and its gates, executed once with no agent and no tokens spent. A box that
+              cannot build the project is a fact you want before an agent spends four hours
+              discovering it. A worktree box has no image and no toolbox to prove, so the gate does
+              not apply to it.
             </p>
           </div>
 
@@ -312,13 +330,21 @@
           </p>
         </div>
 
+        <!-- NO AXIS COUNT IS TYPED HERE, deliberately. This sentence used to say "Nine axes"
+             and then name eight, above a table showing six, while openfactory/plugins.py:63-69
+             (AXES) holds seventeen entry-point axes and docs/STATUS.md:77-87 publishes a table of
+             nine — four values for one number on one page. plugins.py:12 warns against typing it
+             at all: "seven of them when the sentence was written; AXES below is the count today."
+             So: name what the table shows, link for the rest. -->
         <div class="claim">
           <span class="claim-index">01</span>
           <div>
             <h3>A provider is configuration, not a code change</h3>
             <p>
-              Nine axes dispatch through registries: tracker, board, forge, CI/environment,
-              harness, sandbox, events, metrics. The axes are independent: Jira for tickets and
+              Provider axes dispatch through registries — tracker, board, forge, CI/environment,
+              harness and sandbox are the ones tabled below, and they are not the whole list;
+              <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/STATUS.md" target="_blank" rel="noopener">docs/STATUS.md</a>
+              publishes every axis and what implements it. The axes are independent: Jira for tickets and
               GitHub for code is a two-line registry entry, not a fork. An unknown provider raises
               at startup naming what is supported. It never falls back to a default, because a
               deployment pointed at the wrong vendor should surface as the configuration mistake
@@ -333,7 +359,16 @@
                   <tr><td>Forge</td><td><code>github</code> · <code>azure_devops</code></td></tr>
                   <tr><td>CI / environment</td><td><code>github_actions</code> · <code>azure_pipelines</code></td></tr>
                   <tr><td>Harness</td><td><code>claude_code</code> · <code>codex</code> · <code>kimi</code> · <code>opencode</code></td></tr>
-                  <tr><td>Sandbox</td><td><code>worktree</code> · <code>container</code> · <code>fargate</code></td></tr>
+                  <!-- `fargate` is DESCRIBED by the core and RUN by an add-on, so it is marked
+                       rather than listed flat beside the two that ship:
+                       · docs/STATUS.md:84 — "`fargate` is described by the core (its traits are a
+                         row) and RUN by the openfactory-aws add-on through the box_runner.fargate
+                         entry point — absent the add-on, the kind is refused by name"
+                       · openfactory/plugins.py:84 — SHIPS_IN maps box_runner.fargate to
+                         openfactory-aws
+                       · adapters/sandbox/registry.py:45 — "THE CORE DESCRIBES `fargate` AND NO
+                         LONGER IMPLEMENTS IT." -->
+                  <tr><td>Sandbox</td><td><code>worktree</code> · <code>container</code> · <code>fargate</code> (add-on: <code>openfactory-aws</code>)</td></tr>
                 </tbody>
               </table>
             </div>
@@ -371,8 +406,12 @@ model:
               Routes are configuration too: Anthropic direct, Amazon Bedrock, a corporate
               gateway, Vertex. An enterprise whose security team requires everything inside their
               own AWS account changes one value, no fork, no special build. This platform's own
-              tickets have been written by Claude Code and by OpenCode, both over Bedrock, in
-              <code>eu-west-2</code>.
+              tickets have been written by Claude Code and by OpenCode, both over Bedrock.
+              <!-- The deployment's region was named here until 2026-09-03. It proved nothing the
+                   sentence needed — the claim is that the route is configuration, and a region is
+                   a fact about where OUR deployment happens to run. A public page is the one
+                   surface where such a detail only ever narrows. -->
+
             </p>
           </div>
         </div>
@@ -492,18 +531,31 @@ model:
           finds a gap after adopting is a visitor who stops believing the parts that were true.
         </p>
         <ul class="limits-list">
+          <!-- TWO LIMITS WERE REMOVED HERE, both because they had closed (2026-09-01):
+               · "The product role's chat ships on one channel today … its surface inside the
+                 platform is still being built." The panel IS that surface and it ships —
+                 docs/reference/product-role.md:4 documents /product/<name>, and
+                 adapters/channel/registry.py:21 makes panel the default kind. Slack is not a
+                 shipped channel at all any more: docs/STATUS.md:244 lists
+                 adapters/channel/slack.py as excluded from the public tree.
+               · "Onboarding a legacy codebase is manual … it does not yet read your repository
+                 and propose it." docs/STATUS.md:101 records this CLOSED 2026-08-13, and
+                 openfactory/cli.py:1287 is @app.command("onboard") — it reads the manifest from
+                 the code, proves it in the real box, and opens one pull request.
+               Removed rather than hedged: a limit that has closed is not a limit with a caveat. -->
+          <!-- Put here in place of the two removed above, because W2's instruction is to state the
+               residual limit STATUS.md actually records rather than to leave the section thinner
+               than the truth. SOURCE: docs/STATUS.md:151-160 — "One deployment serves one GitHub
+               organisation … the forge credential is process-global, because a GitHub App
+               *installation* belongs to one org … `openfactory project add` refuses a project in a
+               second organisation, naming both orgs". The tracker id STATUS.md carries beside it
+               is deliberately NOT reproduced: a card number a reader cannot open does not belong
+               on a public page. -->
           <li>
-            <strong>The product role's chat ships on one channel today.</strong>
-            It sweeps and reconciles with no chat at all, and the channel is a pluggable adapter
-            rather than a dependency, but the conversational half (proposing, accepting,
-            versioning a requirement) currently exists only as the Slack adapter. Its surface
-            inside the platform is still being built.
-          </li>
-          <li>
-            <strong>Onboarding a legacy codebase is manual.</strong>
-            The platform verifies what you declare; it does not yet read your repository and
-            propose it. That is being built, and it is the difference between a greenfield happy
-            path and the codebase you actually have.
+            <strong>One deployment serves one GitHub organisation.</strong>
+            A GitHub App installation belongs to a single org and the forge credential is
+            process-global, so a second organisation needs a second deployment. It is enforced
+            rather than assumed: registering a project in a second org is refused by name.
           </li>
           <li>
             <strong>The knowledge map reads Python, TypeScript/JavaScript and C#.</strong>
