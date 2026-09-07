@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenFactory: software stopped being handmade</title>
-  <meta name="description" content="A card goes in and a reviewed pull request comes out, built in a sandbox with your project's own gates and checked by a second, independent agent. Open source, Apache-2.0, runs on your own machines.">
+  <title>OpenFactory: tickets in, reviewed pull requests out</title>
+  <meta name="description" content="Open-source software factory. It takes tickets from GitHub, Jira or Azure DevOps, runs the coding agents you already use in a sandbox with your own test gates, and returns an independently reviewed pull request. Apache-2.0. Runs on your machines.">
   <meta name="theme-color" content="#0B0F14">
 
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32.png">
@@ -12,8 +12,8 @@
   <link rel="apple-touch-icon" href="/assets/favicons/app-icon-512.png">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="OpenFactory: software stopped being handmade">
-  <meta property="og:description" content="A card goes in and a reviewed pull request comes out, built in a sandbox with your project's own gates and checked by a second, independent agent. Open source, Apache-2.0, runs on your own machines.">
+  <meta property="og:title" content="OpenFactory: tickets in, reviewed pull requests out">
+  <meta property="og:description" content="Open-source software factory. It takes tickets from GitHub, Jira or Azure DevOps, runs the coding agents you already use in a sandbox with your own test gates, and returns an independently reviewed pull request. Apache-2.0. Runs on your machines.">
   <meta property="og:image" content="/assets/logos/logo-horizontal.png">
   <meta property="og:url" content="https://openfactory.digital">
   <meta name="twitter:card" content="summary_large_image">
@@ -57,7 +57,7 @@
         <div class="nav-links">
           <ul>
             <li><a href="#install">Install</a></li>
-            <li><a href="#capacity">Why OpenFactory</a></li>
+            <li><a href="#capacity">Why</a></li>
             <li><a href="#integrations">Integrations</a></li>
             <li><a href="#numbers">Numbers</a></li>
             <li><a href="#product">Product</a></li>
@@ -80,64 +80,54 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <span class="eyebrow">Open source · Apache-2.0</span>
-          <h1>Software stopped being handmade.</h1>
+          <h1>Tickets in. Reviewed pull requests out.</h1>
           <div class="lede">
             <p>
-              A ticket today is craft work: someone opens an editor, hunts through the codebase,
-              writes the change, runs the tests, opens the PR. OpenFactory puts that on a line. A
-              card goes in, and a reviewed pull request comes out, built in a sandbox running your
-              project's own gates and checked by a second, independent agent before it ever
-              reaches you.
-            </p>
-            <p>
-              Your day moves with it. Instead of reading every diff as it is typed, you read the
-              floor: what shipped, what stalled, what needs a decision only a person can make. The
-              two calls that were always yours, what gets built and whether it ships, stay yours.
+              OpenFactory takes a card from your board, runs a coding agent on it in a sandbox
+              with your project's own test gates, has a second agent review the result, and
+              opens the pull request. You decide what gets built and what ships.
             </p>
           </div>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#install">Install it</a>
+            <a class="btn btn-primary" href="#install">Install</a>
             <a class="btn btn-secondary" href="https://github.com/Open-Factory-Digital/openfactory-core" target="_blank" rel="noopener">
-              View on GitHub
+              GitHub
             </a>
-            <a class="btn btn-secondary" href="/how-it-works.html">See how it works</a>
+            <a class="btn btn-secondary" href="/how-it-works.html">How it works</a>
           </div>
           <div class="hero-badges">
             <span class="badge">Apache-2.0</span>
+            <span class="badge">No cloud account</span>
             <a class="badge" href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/STATUS.md" target="_blank" rel="noopener">Test count: docs/STATUS.md</a>
-            <span class="badge">No cloud account required</span>
           </div>
         </div>
         <div class="hero-media">
           <div class="terminal">
-            <span class="label">Docker, and nothing else</span>
+            <span class="label">Docker is the only prerequisite</span>
             <pre><span class="cmd">curl -fsSL https://openfactory.digital/install.sh | sh</span>
-<span class="out"># pulls the published images, asks only what it
-# cannot infer, and leaves the panel on :8787</span></pre>
+<span class="out"># pulls the published images and starts the panel
+# on http://localhost:8787</span></pre>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ CAPACITY: individual speed vs company throughput ============ -->
+    <!-- ============ WHY: per-seat assistants vs a pipeline ============ -->
     <section id="capacity">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">The unit of capacity</span>
-          <h2>A faster developer is still one developer.</h2>
+          <span class="eyebrow">Why</span>
+          <h2>One assistant per developer does not scale. A pipeline does.</h2>
           <p>
-            Codex, Claude Code, Kimi and the rest raise the output of one person at a keyboard,
-            and they are sold the way they work: one licence, one person, one conversation at a
-            time. The unit of capacity is still a human, because somebody has to start each task,
-            stay with it, and carry it to a pull request.
+            Claude Code, Codex and Kimi make one person faster. They are licensed per seat and
+            driven by hand: someone starts each task, stays with it, and carries it to a pull
+            request. Capacity is still headcount.
           </p>
           <p>
-            OpenFactory does not compete with those tools. It runs them. The agents you already
-            pay for stop being a personal assistant and become a line the company owns, and the
-            number you manage stops being cost per developer per month and becomes cost per
-            merged ticket. The people do not disappear from that picture. They stop being the
-            conveyor belt between a ticket and a pull request, and keep the decisions that need
-            judgment.
+            OpenFactory runs those same agents as a pipeline the team owns. Tickets go in without
+            a person attached to each one, and the number you manage becomes cost per merged
+            ticket instead of seats per month. People keep the decisions that need judgment and
+            stop being the hand-off between a ticket and a PR.
           </p>
         </div>
 
@@ -174,21 +164,21 @@
               <rect class="dg-pill" x="290" y="218" width="140" height="28" rx="14"/>
               <text class="dg-pill-text" x="360" y="236.5" text-anchor="middle">one PR</text>
 
-              <text class="dg-foot" x="0" y="292">The unit is a person.</text>
-              <text class="dg-foot-sub" x="0" y="312">Bought by the seat. Remove the person and the lane stops.</text>
+              <text class="dg-foot" x="0" y="292">Capacity is headcount.</text>
+              <text class="dg-foot-sub" x="0" y="312">Bought per seat. No person, no PR.</text>
             </svg>
           </div>
 
           <div class="compare-panel">
             <svg viewBox="0 0 460 320" role="img"
-                 aria-label="The same assistants sit inside a single OpenFactory line that takes tickets in and puts reviewed pull requests out, with one person overseeing the whole line and cost measured per merged ticket.">
+                 aria-label="The same assistants sit inside a single OpenFactory pipeline that takes tickets in and puts reviewed pull requests out, with one person overseeing the whole pipeline and cost measured per merged ticket.">
               <defs>
                 <marker id="pb-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                   <polygon class="dg-arrowhead" points="0,0 10,5 0,10"/>
                 </marker>
               </defs>
 
-              <text class="dg-eyebrow" x="0" y="20">ONE LINE THE COMPANY OWNS</text>
+              <text class="dg-eyebrow" x="0" y="20">ONE PIPELINE THE TEAM OWNS</text>
 
               <use href="#ic-person" x="218" y="42" width="24" height="24" class="dg-icon"/>
               <text class="dg-line-label" x="230" y="82" text-anchor="middle">one person</text>
@@ -214,30 +204,28 @@
               <rect class="dg-pill" x="364" y="184" width="92" height="28" rx="14"/>
               <text class="dg-pill-text" x="410" y="202.5" text-anchor="middle">reviewed PR</text>
 
-              <text class="dg-foot" x="0" y="292">The unit is the line.</text>
-              <text class="dg-foot-sub" x="0" y="312">Measured per merged ticket, not per seat.</text>
+              <text class="dg-foot" x="0" y="292">Capacity is the pipeline.</text>
+              <text class="dg-foot-sub" x="0" y="312">Measured per merged ticket.</text>
             </svg>
           </div>
         </div>
 
         <p class="compare-caption">
-          The same agents appear on both sides. What changes is where the person sits, and
-          whether the capacity belongs to a licence or to the company.
+          Same agents on both sides. The difference is whether a person has to drive each one.
         </p>
       </div>
     </section>
 
-    <!-- ============ INTEGRATIONS: the axis diagram ============ -->
+    <!-- ============ INTEGRATIONS ============ -->
     <section id="integrations" class="section-muted">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Provider-neutral by design</span>
-          <h2>Connects to what you already run</h2>
+          <span class="eyebrow">Integrations</span>
+          <h2>Works with the tools you already run</h2>
           <p>
-            OpenFactory sits between the board where a ticket already lives and the coding agent
-            that works it. It drives the agents you already use instead of adding another one, and
-            each connection is a registry value, not a fork: swap the tracker without touching the
-            harness, or swap the harness without touching anything else.
+            OpenFactory sits between your tracker and your coding agent. Each provider is a
+            registry entry, so you can swap the tracker, the forge, the CI observer or the agent
+            independently.
           </p>
         </div>
 
@@ -301,7 +289,7 @@
 
               <!-- CI/CD -->
               <rect class="dg-box" x="560" y="330" width="220" height="130" rx="10"/>
-              <text class="dg-eyebrow" x="578" y="356">CI/CD · THE CLIENT'S OWN</text>
+              <text class="dg-eyebrow" x="578" y="356">CI/CD · YOUR OWN</text>
               <line class="dg-hr" x1="578" y1="370" x2="762" y2="370"/>
               <use href="#ic-githubactions" x="578" y="385" width="16" height="16" class="dg-icon"/>
               <text class="dg-row-label" x="603" y="399">GitHub Actions</text>
@@ -332,72 +320,63 @@
             </svg>
           </div>
           <figcaption>
-            OpenFactory writes the ticket status and the PR; it only ever <em>watches</em> the
-            client's own CI/CD. The dashed line is the one arrow it never turns solid.
+            OpenFactory updates the ticket and opens the PR. It reads your CI results and never
+            triggers a deploy.
           </figcaption>
         </figure>
 
         <div class="pipeline-branches">
           <div class="branch-card">
-            <span class="branch-tag">on any impediment</span>
-            <h3>The tech-lead steps in</h3>
+            <span class="branch-tag">when a job stalls</span>
+            <h3>The tech-lead classifies the failure</h3>
             <p>
-              Parks the ticket instead of retrying blindly, and routes the failure to whoever (or
-              whatever) actually fixes it. See <a href="/how-it-works.html#autonomy">how it manages that risk</a>.
+              It parks the ticket, works out what would fix it, retries only what is safe to
+              retry, and escalates the rest to a person as a concrete question.
+              <a href="/how-it-works.html#autonomy">Where the boundary is</a>.
             </p>
           </div>
           <div class="branch-card">
-            <span class="branch-tag">requirements in</span>
-            <h3>The product role takes the ask</h3>
+            <span class="branch-tag">taking requirements</span>
+            <h3>The product role scopes the work</h3>
             <p>
-              Talks to whoever wants the work, proposes what enters the queue, and turns a
-              conversation into a tracked commitment instead of a message that gets lost. See
-              <a href="/how-it-works.html#roles">roles</a>.
+              Talks to the requester, reads the board, and proposes tickets with the requirement
+              behind each one. Nothing enters the queue until a person accepts it.
+              <a href="/how-it-works.html#roles">The roles</a>.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ NUMBERS: token efficiency ============ -->
+    <!-- ============ NUMBERS: the knowledge-map A/B ============ -->
+    <!-- SOURCES (openfactory-core, public tree):
+         · arm names `off` / `injected`: docs/knowledge-layer.md:578-582
+         · tokens as the headline measure, not cost: openfactory/api/metrics_view.py:151-155
+         · medians rather than means: openfactory/api/metrics_view.py:135-136
+         · no verdict computed by the readout: openfactory/api/metrics_view.py:157-160
+         · one repository, do not generalise: docs/knowledge-layer.md:600-603
+         · on by default since 2026-08-02: contracts/manifest.py:244, docs/adr/0035
+         · the four medians: live metrics table scanned 2026-09-01, n = 8 per arm.
+           docs/knowledge-layer.md carries the method; plan 03 C1 adds the table itself. -->
     <section id="numbers">
       <div class="container">
         <div class="section-head">
-          <!-- "Proven" was the old eyebrow and it is not what n=8 buys. The core's own readout
-               refuses to draw the conclusion for you: openfactory/api/metrics_view.py:157-160 —
-               "The `delta` is a plain arithmetic difference between the treatment and its control,
-               NOT a verdict … A human judges." -->
-          <span class="eyebrow">Measured, not promised</span>
-          <!-- The headline states the null result rather than burying it (see the wall-clock row
-               below): three wins and a flat measure quietly dropped is selective reporting. -->
-          <h2>Cheaper per ticket. Not faster.</h2>
+          <span class="eyebrow">Measured</span>
+          <h2>Fewer tokens per ticket. Same wall-clock.</h2>
           <p>
-            An internal index means the agent isn't rediscovering your codebase from scratch on
-            every ticket. Measured as an A/B on <strong>one production codebase</strong> — the same
-            factory, the map withheld and then injected — <strong>n&nbsp;=&nbsp;8 tickets per
-            arm</strong>, medians, scanned 2026-09-01:
+            OpenFactory keeps a module map of your codebase and puts it in the agent's context,
+            so the agent reads less to find the same code. A/B on <strong>one production
+            codebase</strong>, <strong>n&nbsp;=&nbsp;8 tickets per arm</strong>, medians, scanned
+            2026-09-01:
           </p>
         </div>
 
         <div class="token-compare">
-          <!-- The arm names are the platform's own, not marketing labels for them:
-               docs/knowledge-layer.md:578-582 defines `off` ("the map was withheld ON PURPOSE")
-               and `injected` ("the module map was in the agent's context"). The previous legend
-               said "With OpenFactory", which was wrong in a way that mattered — BOTH arms are
-               OpenFactory; the map is the only variable. -->
           <div class="token-compare-legend">
             <span class="legend-item"><span class="legend-swatch legend-without"></span>Map off (control)</span>
             <span class="legend-item"><span class="legend-swatch legend-with"></span>Map injected</span>
           </div>
 
-          <!-- TOKENS LEAD, and that is the platform's own rule rather than a presentation choice:
-               openfactory/api/metrics_view.py:151-155 — "TOKENS ARE THE HEADLINE MEASURE, not cost.
-               The claim being tested is that the map makes the agent read less to find the same
-               code, and tokens measure that directly. Cost is a derived number that moves with
-               per-model pricing and is simply absent for a harness that reports no price (Codex),
-               so an experiment resting on cost alone would be unreadable the moment the arms ran
-               on different engines."
-               Cost's −36.2% is the bigger and more flattering number. It does not lead. -->
           <div class="token-metric">
             <div class="token-metric-head">
               <span class="token-metric-name">Tokens per ticket</span>
@@ -429,16 +408,8 @@
           </div>
 
           <!-- BEGIN cost-per-ticket (plan 03 Q1 — deletable as a unit) -->
-          <!-- THE ONLY ABSOLUTE CURRENCY FIGURES ON THE SITE. If the product owner decides the
-               per-ticket USD medians are a commercial disclosure rather than a technical one,
-               delete everything between the BEGIN and END sentinels, inclusive. The page is then
-               correct with three metrics and NO currency amount survives anywhere in it — not in
-               the markup and not in a comment, which is why this explanation lives inside the
-               sentinels rather than above them: a served HTML comment is readable by anyone who
-               views source, so a rationale that restated the figure would defeat its own removal.
-               Published per plan 03's recommendation: the same percentage on a small base and on
-               a large one are not the same claim, and a bare percentage invites the reader to
-               assume the smaller one. -->
+          <!-- The only absolute currency figures on the site. To withdraw them, delete everything
+               between the BEGIN and END sentinels; the page stays correct with three metrics. -->
           <div class="token-metric">
             <div class="token-metric-head">
               <span class="token-metric-name">Cost per ticket</span>
@@ -455,11 +426,8 @@
           </div>
           <!-- END cost-per-ticket -->
 
-          <!-- THE NULL RESULT, on the page beside the wins. Wall-clock did not move (+1.1%), and
-               this is the one row whose treatment bar is LONGER than its control, so the bars are
-               normalised to the larger value (3,309 s = 100%, 3,272 s = 99%) instead of pinning
-               the control at 100% as the three rows above do. Same metaphor either way — a longer
-               bar is more of the thing being measured. -->
+          <!-- Wall-clock is the one row where the treatment bar is longer, so the bars are
+               normalised to the larger value (3,309 s = 100%). -->
           <div class="token-metric">
             <div class="token-metric-head">
               <span class="token-metric-name">Wall-clock per ticket</span>
@@ -476,43 +444,15 @@
           </div>
 
           <p class="token-compare-null">
-            Wall-clock did not move. The map buys a cheaper ticket, not a quicker one — and the
-            measure that stayed flat is here because leaving it out would make the other three
-            mean less than they do.
+            Wall-clock did not move. The map makes a ticket cheaper, not faster.
           </p>
 
-          <!-- WHAT EACH FIGURE RESTS ON.
-               · the four medians and their deltas: the live metrics table, scanned 2026-09-01,
-                 arms `off` (control) vs `injected` (treatment), n = 8 tickets per arm.
-               · the method — arm definitions, median alongside mean, and which tickets are
-                 excluded — docs/knowledge-layer.md § "The A/B is now measurable" (:573-595), and
-                 openfactory/api/metrics_view.py:164-167 for `pre_okf` being a baseline kept out
-                 of the comparison entirely.
-               · "medians" rather than means: openfactory/api/metrics_view.py:135-136 — "ticket
-                 sizes vary enormously, so one large ticket landing in a small arm moves the mean
-                 and proves nothing."
-               · "one production codebase" and the refusal to generalise:
-                 docs/knowledge-layer.md:600-603 — "the number that justified this was measured on
-                 one repository, so the first enterprise deployment should retake it rather than
-                 inherit it."
-               · on by default since 2026-08-02: contracts/manifest.py:244 and :232-235, and
-                 docs/adr/0035-knowledge-layer-on-by-default.md:3 (Accepted 2026-08-02).
-
-               AHEAD OF ITS SOURCE, 2026-09-01. The linked document carries the METHOD today but
-               not yet this TABLE OF NUMBERS; plan 03 C1 adds it to the core repo, and C1 must
-               land before this page is published or the link cites a document that does not say
-               it. The figures previously shown here were a DIFFERENT and narrower measurement —
-               docs/knowledge-layer.md:36-38, a POC on "a 'locate the code' task", one task rather
-               than a per-ticket A/B, and its absolutes were an order of magnitude away from these.
-               Promoting that into a general claim was the defect; the digits were only its
-               symptom, which is why the framing changed with them. -->
           <p class="token-compare-caveat">
-            n&nbsp;=&nbsp;8 tickets per arm on one production codebase: a directional signal, not a
-            proof yet. The arms, the method and what is excluded from the comparison are in
-            <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/knowledge-layer.md" target="_blank" rel="noopener">docs/knowledge-layer.md</a>;
-            the platform's own readout computes no verdict from them, deliberately, because
-            comparing arms is only valid if the ticket mix is comparable and nothing in the code
-            can know that.
+            Eight tickets per arm on one codebase is a signal, not proof. The arm definitions,
+            the method and what is excluded are in
+            <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/knowledge-layer.md" target="_blank" rel="noopener">docs/knowledge-layer.md</a>.
+            The platform reports the deltas and leaves the verdict to you: it cannot know whether
+            the two ticket mixes are comparable.
           </p>
         </div>
       </div>
@@ -523,11 +463,10 @@
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Product</span>
-          <h2>See the factory work</h2>
+          <h2>See it run</h2>
           <p>
-            A walkthrough of a ticket moving through the pipeline: read, sized, coded in a
-            sandbox, gated, opened as a PR, reviewed by a second independent agent, and reported
-            back on the card.
+            One ticket going through: sized, built in a sandbox, gated, opened as a PR, reviewed by
+            a second agent, and reported back on the card.
           </p>
         </div>
 
@@ -553,65 +492,60 @@
       </div>
     </section>
 
-    <!-- ============ FOR DEVELOPERS ============ -->
+    <!-- ============ FOR THE TEAM RUNNING IT ============ -->
     <section id="for-developers">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">For the people who will run it</span>
-          <h2>It takes the boring half.</h2>
+          <span class="eyebrow">For the team running it</span>
+          <h2>What you keep. What it takes.</h2>
         </div>
 
         <div class="feature-grid">
           <div class="feature">
-            <h3>You keep the judgment</h3>
+            <h3>You keep the decisions</h3>
             <p>
-              Policy authorizes the routine path, so nobody spends a morning approving test runs.
-              What gets built, whether it ships, and every promotion to production stay human
-              calls. The mechanical middle of a ticket was never the interesting part.
+              Policy approves the routine steps, so nobody signs off on test runs. What gets
+              built, whether it merges, and every promotion to production stay with a person.
             </p>
           </div>
 
           <div class="feature">
-            <h3>It never lies to you</h3>
+            <h3>It never fails silently</h3>
             <p>
-              An unreadable board is not an empty queue, and a failed read is never dressed up as
-              a result. Every stall either self-heals within a bound or asks you a concrete
-              question, and going quiet is treated as a bug by the test suite.
+              An unreadable board is not an empty queue. A stalled job retries within its budget
+              or puts a concrete question on the card. The test suite treats going quiet as a
+              bug.
             </p>
           </div>
 
           <div class="feature">
             <h3>Your machines, your gates, your fork</h3>
             <p>
-              <code>docker compose up</code> and it runs, with no cloud account. It executes your
-              project's own commands instead of naming a build tool of its own, and it is
-              Apache-2.0: read it, run it, fork it, add a provider with one module and one
-              registry row.
+              <code>docker compose up</code>, no cloud account. It runs your project's own build
+              and test commands. Apache-2.0: read it, fork it, add a provider with one module and
+              one registry row.
             </p>
           </div>
         </div>
 
         <p class="dev-footnote">
-          The honest limits are written down too, including what it cannot do yet.
+          Known limits are written down.
           <a href="/how-it-works.html#limits">Read them before you adopt it →</a>
         </p>
       </div>
     </section>
 
     <!-- ============ INSTALL ============ -->
-    <!-- The one-liner below is the same string as openfactory-core's README install block, and
-         the two notes are carried from it word for word. Two surfaces that teach the same
-         command must not be able to disagree; when the core's release workflow starts publishing
-         this region (plan 01, P3.2) it rewrites it from the README rather than from a memory of
-         it. Until then: edit the README first, then mirror it here. -->
+    <!-- The one-liner is the same string as openfactory-core's README install block. Edit the
+         README first, then mirror it here. -->
     <section id="install" class="section-muted">
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Install</span>
-          <h2>Docker. Only Docker.</h2>
+          <h2>Docker is the only prerequisite</h2>
           <p>
-            No Python on the host, no <code>sudo</code>, one line. It pulls the published images,
-            asks only what it cannot infer from the machine, and leaves the panel running on
+            No Python on the host, no <code>sudo</code>. The script pulls the published images,
+            asks only what it cannot infer from the machine, and leaves the panel at
             <code>http://localhost:8787</code>.
           </p>
         </div>
@@ -629,9 +563,8 @@
                 <td><code>curl -fsSL https://openfactory.digital/install.sh -o install.sh &amp;&amp; less install.sh &amp;&amp; sh install.sh</code></td>
               </tr>
               <tr>
-                <td><strong>no script at all</strong></td>
+                <td><strong>by hand</strong></td>
                 <td>
-                  the same steps by hand —
                   <a href="https://github.com/Open-Factory-Digital/openfactory-core#install" target="_blank" rel="noopener">the commands are in the README</a>,
                   pinned to a release and verified against its checksums
                 </td>
@@ -641,17 +574,17 @@
         </div>
 
         <p class="install-note">
-          The worker mounts the host's Docker socket — that is how <code>sandbox: container</code>
-          starts a box, and it is root-equivalent on the host. It is the same trade
-          <code>docker compose up</code> has always made here.
+          The worker mounts the host's Docker socket to start sandbox containers. That is
+          root-equivalent on the host, the same trade any compose stack that mounts the socket
+          makes.
         </p>
         <p class="install-note">
-          The installer sends nothing anywhere. There is no telemetry in this project.
+          The installer sends nothing anywhere. There is no phone-home telemetry.
         </p>
 
         <p class="install-after">
-          Re-running the installer is the upgrade path: it resolves the newest release, pulls it,
-          and restarts the stack. Your answers and your data survive it.
+          Re-run the installer to upgrade. It pulls the newest release and restarts the stack.
+          Your configuration and data survive.
         </p>
 
         <div class="code-block">
@@ -659,11 +592,11 @@
           <pre>docker compose --env-file .env.compose exec worker openfactory project init myapp https://github.com/&lt;owner&gt;/myapp.git</pre>
         </div>
         <p class="install-after">
-          That registers the project, creates the board with the platform's columns, and scaffolds
-          <code>.openfactory/project.yaml</code>. Then
-          <code>openfactory doctor myapp</code> names everything still missing, one line each with
-          a remedy — including the two credentials nobody can infer for you: the coding agent's and
-          a forge credential.
+          That registers the project, creates the board with the platform's columns, and
+          scaffolds <code>.openfactory/project.yaml</code>.
+          <code>openfactory doctor myapp</code> then lists what is still missing, with a remedy
+          for each item, including the two credentials it cannot infer: the coding agent's and a
+          forge token.
         </p>
       </div>
     </section>
@@ -671,18 +604,14 @@
     <!-- ============ CTA ============ -->
     <section class="cta-band">
       <div class="container">
-        <h2>Apache-2.0. Runs on your own machines.</h2>
-        <p>Read the code, run the tests, check the commands yourself.</p>
-        <div class="code-block">
-          <span class="label">Docker, and nothing else</span>
-          <pre>curl -fsSL https://openfactory.digital/install.sh | sh</pre>
-        </div>
+        <h2>Read the code. Run it on your own machines.</h2>
+        <p>Apache-2.0. No cloud account, no telemetry.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://github.com/Open-Factory-Digital/openfactory-core" target="_blank" rel="noopener">
-            View on GitHub
+            GitHub
           </a>
-          <a class="btn btn-secondary" href="/how-it-works.html">See how it works</a>
-          <a class="btn btn-secondary" href="mailto:contact@openfactory.digital">Contact us</a>
+          <a class="btn btn-secondary" href="/how-it-works.html">How it works</a>
+          <a class="btn btn-secondary" href="mailto:contact@openfactory.digital">Contact</a>
         </div>
       </div>
     </section>
@@ -698,7 +627,7 @@
             <span>OpenFactory</span>
           </a>
           <p class="footer-tagline">
-            Policy authorizes the action. A human still judges the result.
+            Policy approves the steps. People make the decisions.
           </p>
         </div>
         <div class="footer-links">
