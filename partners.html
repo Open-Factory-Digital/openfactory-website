@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OpenFactory certification and partners</title>
-  <meta name="description" content="The delivery method a certified implementation follows, the seven role certifications, the partner tiers, and what may be called OpenFactory. Every rule links to the document that holds it.">
+  <meta name="description" content="The OpenFactory Program: the delivery method, individual certifications, partner tiers, and the conformance requirements for using the OpenFactory name.">
   <meta name="theme-color" content="#0B0F14">
 
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32.png">
@@ -13,7 +13,7 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="OpenFactory certification and partners">
-  <meta property="og:description" content="The delivery method, the role certifications, the partner tiers, and what may be called OpenFactory.">
+  <meta property="og:description" content="The delivery method, individual certifications, partner tiers, and conformance requirements.">
   <meta property="og:image" content="/assets/logos/logo-horizontal.png">
   <meta property="og:url" content="https://openfactory.digital/partners.html">
   <meta name="twitter:card" content="summary_large_image">
@@ -41,15 +41,15 @@
         <div class="nav-links">
           <ul>
             <li><a href="#method">Method</a></li>
-            <li><a href="#people">People</a></li>
-            <li><a href="#companies">Companies</a></li>
-            <li><a href="#marks">The name</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#partners">Partners</a></li>
+            <li><a href="#conformance">Conformance</a></li>
             <li><a href="#funding">Funding</a></li>
           </ul>
         </div>
         <div class="nav-cta">
           <a class="btn btn-secondary" href="https://github.com/Open-Factory-Digital/openfactory-core/tree/main/docs/program" target="_blank" rel="noopener">
-            The program
+            Program documents
           </a>
         </div>
       </nav>
@@ -62,21 +62,20 @@
     <section class="tech-hero">
       <div class="container">
         <a href="/index.html" class="back-link">← Back to openfactory.digital</a>
-        <span class="eyebrow">Certification and partners</span>
-        <h1>The code is free. The name is earned.</h1>
+        <span class="eyebrow">OpenFactory Program</span>
+        <h1>Certification and partners</h1>
         <p class="lede">
-          Anyone may run, fork and sell OpenFactory. What only the project grants is the right to
-          say that a person, a company, a build or a hosted service is OpenFactory-certified, and
-          that grant is worth exactly the process behind it. This page is the short form; every
-          rule links to the document that holds it.
+          OpenFactory is Apache-2.0 software. The OpenFactory name and marks are reserved for
+          people, companies, builds and hosted services that meet the program's published
+          requirements. This page summarises the program. The full documents are in the core
+          repository.
         </p>
-        <!-- SOURCE (openfactory-core, public tree): docs/program/README.md — the program's map and
-             its status line. The program is proposed for adoption; the documents are versioned
-             there and this page restates nothing they do not say. -->
+        <!-- SOURCE (openfactory-core, public tree): docs/program/README.md. This page summarises
+             the program documents and states nothing they do not. -->
         <p class="claim-note">
-          The program documents live in
-          <a href="https://github.com/Open-Factory-Digital/openfactory-core/tree/main/docs/program" target="_blank" rel="noopener">docs/program</a>
-          of the core repository. This page reflects version 1.0 of the program.
+          Program documents:
+          <a href="https://github.com/Open-Factory-Digital/openfactory-core/tree/main/docs/program" target="_blank" rel="noopener">openfactory-core/docs/program</a>.
+          Program version 1.0.
         </p>
       </div>
     </section>
@@ -85,150 +84,147 @@
     <section id="method">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Method</span>
-          <h2>Seven phases, each with a gate you can read</h2>
+          <span class="eyebrow">Delivery method</span>
+          <h2>How a certified implementation is delivered</h2>
           <p>
-            A certified implementation follows the delivery method: the platform's own onboarding
-            path with the parts around it a client organisation needs. Every phase ends on a
-            command's output, not a slide.
+            Certified partners follow a defined process from first contact to ongoing
+            maintenance. Each phase has entry criteria, deliverables and evidence. The method
+            wraps the platform's own onboarding path; it does not replace the documentation.
           </p>
         </div>
 
-        <!-- SOURCE: docs/program/01-delivery-method.md — the phases, their evidence and exit
-             gates; docs/program/02-profiles.md — Light, Standard, Enterprise. -->
+        <!-- SOURCE: docs/program/01-delivery-method.md (phases, evidence);
+             docs/program/02-profiles.md (Light, Standard, Enterprise). -->
         <div class="table-scroll">
           <table class="autonomy-table">
-            <thead><tr><th>Phase</th><th>What is decided</th><th>Evidence</th></tr></thead>
+            <thead><tr><th>Phase</th><th>Scope</th><th>Evidence</th></tr></thead>
             <tbody>
-              <tr><td><code>0 Qualify</code></td><td>whether to assess at all: a runnable test command, a route to the agent, a supported forge, someone who will read the pull requests</td><td>a one-page note</td></tr>
-              <tr><td><code>1 Assess</code></td><td>what the factory can do on this codebase, what it costs, what must change first</td><td><code>env read</code>, <code>env context</code>, a scorecard, a report</td></tr>
-              <tr><td><code>2 Design</code></td><td>every decision the deployment embodies: shape, providers, credentials, the box, the floor, merge policy, what follows a merge</td><td>the design record, signed</td></tr>
-              <tr><td><code>3 Implement</code></td><td>install, onboard, prove, rehearse, first ticket, a costed pilot, hand-over</td><td><code>doctor</code>, <code>box status</code>, <code>env rehearse</code>, the pilot report</td></tr>
-              <tr><td><code>4 Operate</code></td><td>the cadences: attention, parked cards, cost against budget, proofs</td><td>the operator's log, the cost dashboard</td></tr>
-              <tr><td><code>5 Support</code></td><td>severities from the platform's own failure classes; response times by tier; escalation to the maintainers</td><td>the ticket record</td></tr>
-              <tr><td><code>6 Maintain</code></td><td>upgrades, proofs, rotation, retention, backup and a tested restore</td><td>the maintenance calendar</td></tr>
+              <tr><td><code>0 Qualify</code></td><td>Whether to assess: a runnable test command, a route to the model provider, a supported forge, reviewers for the pull requests</td><td>Qualification note</td></tr>
+              <tr><td><code>1 Assess</code></td><td>Readiness of the codebase and organisation; cost estimate; prerequisite work</td><td><code>env read</code>, <code>env context</code>, scorecard, assessment report</td></tr>
+              <tr><td><code>2 Design</code></td><td>Deployment shape, providers, credentials, box, quality floor, merge policy, post-merge behaviour</td><td>Signed design record</td></tr>
+              <tr><td><code>3 Implement</code></td><td>Install, onboard, prove, rehearse, first ticket, costed pilot, hand-over</td><td><code>doctor</code>, <code>box status</code>, <code>env rehearse</code>, pilot report, runbook</td></tr>
+              <tr><td><code>4 Operate</code></td><td>Daily, weekly, monthly and quarterly operator cadences</td><td>Operator's log, cost dashboard</td></tr>
+              <tr><td><code>5 Support</code></td><td>Severities, response times by tier, escalation to the maintainers</td><td>Ticket record</td></tr>
+              <tr><td><code>6 Maintain</code></td><td>Upgrades, proofs, credential rotation, retention, backup and restore</td><td>Maintenance calendar</td></tr>
             </tbody>
           </table>
         </div>
 
         <div class="two-col autonomy-cols">
           <div>
-            <h3>Three profiles, one platform</h3>
+            <h3>Three profiles</h3>
             <p>
-              <strong>Light</strong> is one team on one machine or one small stack.
-              <strong>Standard</strong> is a hosted forge, a real board and several people on one
-              panel. <strong>Enterprise</strong> adds a signed security review, identity, a
-              promotion chain with a human production gate, and audit.
+              <strong>Light</strong>: one team, one machine or one small stack.
+              <strong>Standard</strong>: a hosted forge, a board, several people on one panel.
+              <strong>Enterprise</strong>: a signed security review, identity integration, a
+              promotion chain with a human production gate, and audit requirements.
             </p>
             <p>
-              A profile is not an edition. Every profile runs the same Apache-2.0 build with every
-              feature. A profile is the set of controls a certified implementation must have in
-              place, written so an auditor can check each one.
+              All profiles run the same build with every feature. A profile is a set of required
+              controls, each with a defined verification.
             </p>
           </div>
           <div>
-            <h3>What the method never does</h3>
+            <h3>Rules that apply to every phase</h3>
             <ul class="never-list">
-              <li>Merge a proposal into a client's repository. The client merges; the platform proposes.</li>
-              <li>Spend before proving. The box is proven, the rehearsal is costed, the pilot has a cap.</li>
-              <li>Sell what the status page says is not built.</li>
-              <li>Restate the platform's behaviour. The documentation is the syllabus.</li>
+              <li>The platform proposes; the customer reviews and merges. Partners do not merge into customer repositories.</li>
+              <li>The box is proven and a rehearsal is costed before any pilot ticket runs. Pilots have a budget cap.</li>
+              <li>Customers are told what the platform does not do, as published on the status page, before the design record is signed.</li>
+              <li>Exit criteria are command output or signed documents.</li>
             </ul>
           </div>
         </div>
 
         <p class="claim-note">
-          <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/01-delivery-method.md" target="_blank" rel="noopener">The delivery method</a> ·
-          <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/02-profiles.md" target="_blank" rel="noopener">the profiles and their controls</a> ·
-          <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/01a-feature-coverage.md" target="_blank" rel="noopener">every feature, mapped to a phase</a> ·
-          <a href="https://github.com/Open-Factory-Digital/openfactory-core/tree/main/docs/program/templates" target="_blank" rel="noopener">the templates</a>.
+          <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/01-delivery-method.md" target="_blank" rel="noopener">Delivery method</a> ·
+          <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/02-profiles.md" target="_blank" rel="noopener">Profiles and control catalogue</a> ·
+          <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/01a-feature-coverage.md" target="_blank" rel="noopener">Feature coverage</a> ·
+          <a href="https://github.com/Open-Factory-Digital/openfactory-core/tree/main/docs/program/templates" target="_blank" rel="noopener">Templates</a>
         </p>
       </div>
     </section>
 
-    <!-- ============ PEOPLE ============ -->
-    <section id="people" class="section-muted">
+    <!-- ============ CERTIFICATIONS ============ -->
+    <section id="certifications" class="section-muted">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">People</span>
-          <h2>Seven credentials, one per role</h2>
+          <span class="eyebrow">Certifications</span>
+          <h2>Individual certifications</h2>
           <p>
-            A certification is held by a person, never by a company. It expires. It is verifiable
-            by number. The roles that touch a deployment are examined by doing the work in a lab
-            built on the one-machine door, with a stub agent, so an examination costs no tokens
-            and grades the same for everyone.
+            Seven certifications, one per role. Certifications are held by individuals, expire,
+            and can be verified by certificate number. Hands-on roles are examined in a lab built
+            on the one-machine door with a stub agent, so exams require no model credential.
           </p>
         </div>
 
-        <!-- SOURCE: docs/program/03-role-certifications.md — the ladder table: format, length,
-             pass mark, validity, prerequisite. Fees are proposals and are not typed here. -->
+        <!-- SOURCE: docs/program/03-role-certifications.md, the certifications table. Fees are
+             proposals and are not stated here. -->
         <div class="feature-grid">
           <div class="feature">
-            <h3>Associate</h3>
-            <p>For everyone on an engagement: requesters, reviewers, sponsors. Multiple choice, 75 minutes, three years. No prerequisite.</p>
+            <h3>Associate (OFCA)</h3>
+            <p>For requesters, reviewers and sponsors. Multiple choice, 75 minutes. Valid three years. No prerequisite.</p>
           </div>
           <div class="feature">
-            <h3>Operator</h3>
-            <p>Runs a deployment: installs, keeps <code>doctor</code> green, answers what parks, upgrades, rotates, backs up, restores. Performance-based, two hours, two years.</p>
+            <h3>Operator (OFCO)</h3>
+            <p>Runs a deployment: install, diagnose, prove the box, handle parked work, upgrade, back up and restore. Performance-based, two hours. Valid two years.</p>
           </div>
           <div class="feature">
-            <h3>Implementer</h3>
-            <p>Takes a codebase from assessment to go-live. Performance-based, three hours, two years. Requires a valid Operator credential.</p>
+            <h3>Implementer (OFCI)</h3>
+            <p>Takes a codebase from assessment to go-live. Performance-based, three hours. Valid two years. Requires a valid Operator certification.</p>
           </div>
           <div class="feature">
-            <h3>Solution Architect</h3>
-            <p>Designs a deployment and signs its security review. A design record graded to a rubric plus a scenario examination. Requires a valid Implementer credential.</p>
+            <h3>Solution Architect (OFCSA)</h3>
+            <p>Designs deployments and signs security reviews. A graded design record plus a scenario exam. Requires a valid Implementer certification.</p>
           </div>
           <div class="feature">
-            <h3>Product Owner</h3>
-            <p>Owns what gets built: requirements, the baseline, the confirmations, the release. Two hours, three years. No prerequisite.</p>
+            <h3>Product Owner (OFCPO)</h3>
+            <p>Owns requirements, baseline adoption, confirmations and release. Two hours. Valid three years. No prerequisite.</p>
           </div>
           <div class="feature">
-            <h3>Developer</h3>
-            <p>Writes an add-on the core does not ship, to the extension model and the house rules, and proves it with the conformance suite. Three hours, two years.</p>
+            <h3>Developer (OFCD)</h3>
+            <p>Writes add-ons to the extension model and the contribution rules, verified with the conformance suite. Three hours. Valid two years.</p>
           </div>
           <div class="feature">
-            <h3>Trainer</h3>
-            <p>Teaches the program's courses. Holds Implementer or Solution Architect, passes a teach-back under observation, renewed yearly on delivery records.</p>
+            <h3>Trainer (OFCT)</h3>
+            <p>Delivers the program's courses. Requires Implementer or Solution Architect, an observed teach-back, and annual renewal on delivery records.</p>
           </div>
         </div>
 
         <p class="claim-note">
-          The blueprints, the examination rules, the courses and the proposed fees are in
+          Exam domains, policies, courses and proposed fees:
           <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/03-role-certifications.md" target="_blank" rel="noopener">docs/program/03-role-certifications.md</a>.
-          A credential says a person performed the role's tasks to the program's standard on a given
-          day. It claims nothing more, and no partner may imply that it does.
         </p>
       </div>
     </section>
 
-    <!-- ============ COMPANIES ============ -->
-    <section id="companies">
+    <!-- ============ PARTNERS ============ -->
+    <section id="partners">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Companies</span>
-          <h2>Three tiers, counted in people and deployments</h2>
+          <span class="eyebrow">Partner program</span>
+          <h2>Partner tiers</h2>
           <p>
-            A partner is counted the way every program in the market counts one: the certified
-            people it employs, the deployments it can show, and what it gives back. The rules
-            apply identically to every company, the project's own affiliates included.
+            Partners are companies that implement, host, support, teach or extend OpenFactory for
+            customers. Tiers are based on certified staff, referenceable deployments and upstream
+            contribution. The same requirements apply to every company, including companies
+            affiliated with the project's steward.
           </p>
         </div>
 
-        <!-- SOURCE: docs/program/04-partner-program.md — the tier table. Counts are stated there;
-             fees are proposals and are not typed here. -->
+        <!-- SOURCE: docs/program/04-partner-program.md, the tiers table. Fees are proposals
+             and are not stated here. -->
         <div class="auth-strip">
           <div class="auth-step">
             <span class="auth-step-tag">registered</span>
-            <p>Any company that has accepted the code of conduct. Listed by name. May say "Powered by OpenFactory".</p>
+            <p>Any company that registers and accepts the code of conduct. Listed by name. May use "Powered by OpenFactory".</p>
           </div>
           <div class="auth-step">
             <span class="auth-step-tag">certified</span>
-            <p>Three certified people, at least one Implementer and one Operator; one referenceable deployment with the method's evidence; a support tier from the standard.</p>
+            <p>Three certified staff including one Implementer and one Operator. One referenceable deployment. A support tier from the standard.</p>
           </div>
           <div class="auth-step">
             <span class="auth-step-tag">premier</span>
-            <p>Six certified people including a Solution Architect; three referenceable deployments, one Enterprise; an audited support desk; a maintained upstream contribution.</p>
+            <p>Six certified staff including a Solution Architect. Three referenceable deployments, one Enterprise. An audited support desk. An upstream contribution record.</p>
           </div>
         </div>
 
@@ -236,57 +232,59 @@
           <div>
             <h3>Specialisations</h3>
             <p>
-              <strong>Implementation</strong>, which every certified partner holds.
-              <strong>Managed Hosting</strong>, only for a service that passes the hosting
-              conformance. <strong>Support</strong>, for an audited desk. <strong>Training</strong>,
-              for a partner with a certified trainer and the courseware licence.
-              <strong>Technology</strong>, for an add-on listed as OpenFactory Compatible.
+              <strong>Implementation</strong> (all Certified Partners).
+              <strong>Managed Hosting</strong>, for services that hold OpenFactory Certified
+              Hosting. <strong>Support</strong>, for an audited desk.
+              <strong>Training</strong>, for Authorised Training Partners with a certified trainer
+              and a courseware licence. <strong>Technology</strong>, for add-ons listed as
+              OpenFactory Compatible.
             </p>
           </div>
           <div>
-            <h3>What a partner owes</h3>
+            <h3>Partner obligations</h3>
             <ul class="never-list">
-              <li>The method, on every implementation it calls certified, with the evidence producible.</li>
-              <li>Honesty about what the platform does not do, before the design record is signed.</li>
-              <li>Upstream first: defects reported, fixes proposed, no divergent fork under the name.</li>
-              <li>A named roster, kept current, never shared between partners.</li>
+              <li>Follow the delivery method on every implementation described as certified.</li>
+              <li>Report defects upstream and propose fixes upstream before shipping them to a second customer.</li>
+              <li>Keep a current roster of certified staff; staff are not shared between partners.</li>
+              <li>Use the marks as the trademark licence specifies.</li>
             </ul>
           </div>
         </div>
 
         <p class="claim-note">
-          The tiers, the benefits, the obligations, the verification and the revocation rules are in
+          Requirements, benefits, application and renewal:
           <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/04-partner-program.md" target="_blank" rel="noopener">docs/program/04-partner-program.md</a>.
-          The partner directory is published on this page once the first partners are listed.
+          The partner directory will be published on this page when the first partners are listed.
         </p>
       </div>
     </section>
 
-    <!-- ============ THE NAME ============ -->
-    <section id="marks" class="section-muted">
+    <!-- ============ CONFORMANCE ============ -->
+    <section id="conformance" class="section-muted">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">The name</span>
-          <h2>What may be called OpenFactory</h2>
+          <span class="eyebrow">Conformance</span>
+          <h2>Using the OpenFactory name</h2>
           <p>
-            Apache-2.0 grants every right to the code and none to the mark. A build, a hosted
-            service or an add-on earns the name by passing a test anyone can run, submitted in
-            public, valid for a version, refreshed yearly.
+            Apache-2.0 grants rights to the code and no rights to the marks. Builds, hosted
+            services and add-ons qualify for the marks by passing published conformance
+            requirements: self-tested, submitted in public, reviewed, valid per version, and
+            refreshed annually.
           </p>
         </div>
 
-        <!-- SOURCE: NOTICE — "the code is free; the name is not"; docs/program/05-conformance-and-marks.md
-             — the marks table, the submission, the review, validity. -->
+        <!-- SOURCE: NOTICE; docs/program/05-conformance-and-marks.md (marks table, submission,
+             review, validity). -->
         <div class="claim">
           <span class="claim-index">01</span>
           <div>
-            <h3>Certified OpenFactory, for a build</h3>
+            <h3>Certified OpenFactory: builds</h3>
             <p>
-              The public test suite green in both orders on the build, every shipped provider row
-              passing <code>conformance-adapter</code>, and the reference project through
+              The public test suite passes in both orders on the build. Every shipped provider row
+              passes <code>conformance-adapter</code>. The reference project passes
               <code>doctor</code>, <code>conformance</code>, <code>box prove</code> and a rehearsal.
-              A build may add behaviour; it may not remove the floor, the credential boundary, the
-              pipeline's control of version control, or the human production gate.
+              A build may add behaviour but may not remove the quality floor, the credential
+              boundary, the pipeline's control of version control, or the human production gate.
             </p>
           </div>
         </div>
@@ -294,12 +292,12 @@
         <div class="claim">
           <span class="claim-index">02</span>
           <div>
-            <h3>OpenFactory Certified Hosting, for a service</h3>
+            <h3>OpenFactory Certified Hosting: services</h3>
             <p>
-              A certified build run to the hosting standard: one deployment per client
-              organisation, the credential boundary kept between provider and client, the data's
-              location declared, the backup set exportable so a client can leave, the panel behind
-              identity, version currency, a tested restore, support at Premium or above.
+              A certified build operated to the hosting standard: one deployment per customer
+              organisation, credential boundary maintained between provider and customer, declared
+              data location, exportable backup set, panel behind identity, version currency,
+              tested restore, and Premium support or above. Audited annually.
             </p>
           </div>
         </div>
@@ -307,11 +305,10 @@
         <div class="claim">
           <span class="claim-index">03</span>
           <div>
-            <h3>OpenFactory Compatible, for an add-on</h3>
+            <h3>OpenFactory Compatible: add-ons</h3>
             <p>
-              Each declared row passing <code>conformance-adapter</code> on the current and previous
-              minor, with a support commitment on the listing. The core's documentation never names
-              an add-on as more than an add-on; the compatible list is where a deployment looks.
+              Each declared row passes <code>conformance-adapter</code> on the current and previous
+              minor release, with a support commitment on the listing.
             </p>
           </div>
         </div>
@@ -319,7 +316,7 @@
         <div class="two-col">
           <div>
             <div class="code-block">
-              <span class="label">The submission, one pull request</span>
+              <span class="label">Submission: one pull request</span>
               <pre><span class="cmd">v0.4/&lt;vendor&gt;-&lt;product&gt;/</span>
 PRODUCT.yaml  README.md  suite-fixed.xml  suite-random.xml
 adapters.txt  preflight.json  doctor.txt  conformance.txt
@@ -328,15 +325,16 @@ box-prove.txt  rehearse.txt</pre>
           </div>
           <div>
             <p>
-              A bot checks the files within minutes; a reviewer checks the participation form and
-              the reproduction within five business days; the merge is the certification. Free for
-              open-source distributions and non-profits. Anyone may say, truthfully, that a product
-              runs or is built on OpenFactory; nobody may put the name in their own product's name.
+              Automated checks run on submission. A program reviewer checks the participation form
+              and the reproduction instructions within five business days. Merging the pull request
+              constitutes certification. Listing is free for open-source distributions and
+              non-profits. Anyone may state that a product runs on OpenFactory; the name may not be
+              used as part of a product, service or company name.
             </p>
             <p class="claim-note">
               <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/NOTICE" target="_blank" rel="noopener">NOTICE</a> ·
-              <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/05-conformance-and-marks.md" target="_blank" rel="noopener">conformance and the marks</a> ·
-              <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/06-support-and-maintenance-standard.md" target="_blank" rel="noopener">the support, maintenance and hosting standard</a>.
+              <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/05-conformance-and-marks.md" target="_blank" rel="noopener">Conformance and trademark policy</a> ·
+              <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/06-support-and-maintenance-standard.md" target="_blank" rel="noopener">Support, maintenance and hosting standard</a>
             </p>
           </div>
         </div>
@@ -348,40 +346,39 @@ box-prove.txt  rehearse.txt</pre>
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Funding</span>
-          <h2>How the project pays for this</h2>
+          <h2>How the program is funded</h2>
         </div>
 
-        <!-- SOURCE: docs/program/07-sustainability.md — what stays free, the revenue lines, the
-             foundation path, the conflict-of-interest rules. -->
+        <!-- SOURCE: docs/program/07-sustainability.md. -->
         <div class="two-col autonomy-cols">
           <div>
-            <h3>What stays free, forever</h3>
+            <h3>Free</h3>
             <ul class="never-list">
-              <li>The platform, with every feature. There is no enterprise edition.</li>
-              <li>The documentation, including the program's.</li>
+              <li>The platform, with all features. There is no enterprise edition.</li>
+              <li>The documentation, including the program documents.</li>
               <li>The conformance suite and the right to run it.</li>
-              <li>Descriptive use of the name, and listing for open-source distributions.</li>
+              <li>Descriptive use of the name, and conformance listing for open-source distributions and non-profits.</li>
             </ul>
           </div>
           <div>
-            <h3>What the project earns from</h3>
+            <h3>Paid</h3>
             <p>
-              Examinations, partner tiers, commercial conformance listings, the courseware licence,
-              and membership in what the project becomes. The project never sells implementation,
-              hosting or support to a client, and takes no share of a partner's revenue.
+              Certification exams, partner tiers, commercial conformance listings, courseware
+              licences, and membership once a foundation exists. The project does not sell
+              implementation, hosting or support, and takes no share of partner revenue.
             </p>
             <p>
-              The marks and the program move to a neutral holder when a second partner of scale
-              exists, and to a foundation with members when three independent companies want a seat.
-              Until then the steward runs the program by these documents, and the
-              conflict-of-interest rules apply from the first day.
+              The marks and the program transfer to a neutral holder when a second partner of
+              comparable scale exists, and to a member foundation when three independent companies
+              commit to membership. Until then the steward administers the program under the
+              published documents, with conflict-of-interest rules in effect from the start.
             </p>
           </div>
         </div>
 
         <p class="claim-note">
-          <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/07-sustainability.md" target="_blank" rel="noopener">docs/program/07-sustainability.md</a>
-          carries the revenue lines, the proposed fee bands, the foundation path and the governance.
+          Revenue lines, proposed fees, governance and the foundation path:
+          <a href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/program/07-sustainability.md" target="_blank" rel="noopener">docs/program/07-sustainability.md</a>.
         </p>
       </div>
     </section>
@@ -389,11 +386,11 @@ box-prove.txt  rehearse.txt</pre>
     <!-- ============ CTA ============ -->
     <section class="cta-band">
       <div class="container">
-        <h2>Certify your people. List your company.</h2>
-        <p>Read the program, then write to us. The first examinations and the first partner listings are announced here.</p>
+        <h2>Get certified. Become a partner.</h2>
+        <p>Read the program documents, then contact us. Exam dates and the first partner listings will be announced on this page.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://github.com/Open-Factory-Digital/openfactory-core/tree/main/docs/program" target="_blank" rel="noopener">
-            Read the program
+            Program documents
           </a>
           <a class="btn btn-secondary" href="mailto:contact@openfactory.digital?subject=OpenFactory%20program">Contact</a>
         </div>
