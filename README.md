@@ -1,6 +1,6 @@
 # openfactory.digital
 
-Source for the OpenFactory marketing site — two static pages, no build step, no
+Source for the OpenFactory marketing site — three static pages, no build step, no
 framework, no CI.
 
 ## Where the claims come from
@@ -37,6 +37,10 @@ it is not built yet.
 ```
 index.html              the home page
 how-it-works.html       the technical page — mechanism, provider axes, limits
+partners.html           implementation partners — the partner list, requirements, the
+                        evidence-based certification process and the implementation
+                        guidelines. The program's rules live on this page; the `certify`
+                        command it names is specified in an openfactory-core issue
 assets/css/style.css    all styling, both pages
 assets/logos/           brand kit — icon, horizontal lockup, negative variants (svg + png)
 assets/icons/           provider marks, also inlined as an SVG sprite in each page
