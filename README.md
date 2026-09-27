@@ -1,45 +1,62 @@
 # openfactory.digital
 
-Source for the OpenFactory marketing site — a single static page, no build step,
-no framework. Copy is sourced from the platform's own `docs/site-guide.md`: every
-claim on the page carries the command that proves it.
+Static OpenFactory website. No framework, dependencies or build step.
 
 ## Structure
 
-```
-index.html              the entire page
-assets/css/style.css    all styling
-assets/logos/           brand kit — icon, horizontal lockup, negative variants (svg + png)
-assets/favicons/        favicon.ico, 16/32px png, 512px app icon
-CNAME                   custom domain for GitHub Pages (openfactory.digital)
-robots.txt
-```
+- `index.html`: product overview, documented measurements and official implementation partners.
+- `how-it-works.html`: technical details and operating boundaries.
+- `assets/css/style.css`: existing shared design system.
+- `assets/css/refresh.css`: homepage presentation, responsive layout and partner section.
+- `assets/logos/`, `assets/favicons/`: OpenFactory identity.
+- `assets/partners/`: partner logo and world map; see its README for source attribution.
+- `assets/videos/`: existing walkthrough and poster. Playback is user controlled.
 
-## Preview locally
+## Local preview
 
 ```bash
-python3 -m http.server 8000
-# open http://localhost:8000
+python3 -m http.server 8010 --bind 127.0.0.1
 ```
 
-## Deploying
+Open http://127.0.0.1:8010/ or http://127.0.0.1:8010/#partners.
+Use a local server because this site uses root-relative asset URLs.
 
-Static files, no build step — works on GitHub Pages, Netlify, Vercel or Cloudflare
-Pages unchanged. For GitHub Pages: push to this repo under the
-[Open-Factory-Digital](https://github.com/Open-Factory-Digital) org, enable Pages on
-the default branch, and point the `openfactory.digital` DNS `A`/`ALIAS` records at
-GitHub Pages per [their custom-domain guide](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site) —
-the `CNAME` file at the repo root already declares the domain.
+## Review and rollback
 
-## Pending media
+Local baseline tag: `before-partner-refresh-2026-09-27`.
+It captures the complete tracked state before this refresh, including the existing
+uncommitted corrections to the GitHub repository links. The snapshot commit is
+reachable through the tag; the current branch was not moved to create it.
 
-The `#product` section (`index.html`) reserves a video slot (`.media-video.placeholder`)
-and a three-screenshot grid (`.screenshot-grid`) with instructions inline as HTML
-comments. Once the walkthrough recording and product screenshots exist, swap the
-placeholder `<div>`s for a real `<video>`/embed and `<img>` tags — no other changes
-needed.
+The refresh and tag have not been pushed. After approval, include the new assets
+and stylesheet in the publication commit and push the tag as well.
+
+To restore the baseline after publication, from a clean worktree:
+
+```bash
+git restore --source=before-partner-refresh-2026-09-27 --staged --worktree -- .
+git commit -m "Restore website before partner refresh"
+```
+
+That creates a rollback commit without rewriting history. Publish that commit
+through the normal deployment process.
+
+## Content sources
+
+The homepage benchmark uses `openfactory-core/docs/knowledge-layer.md`, section
+“What it measured (scan of 2026-09-01)”: medians from 8 tickets per arm on one
+production codebase. The unchanged wall-clock result and sample limits remain
+visible alongside token, turn and cost changes.
+
+CastelloSoft (Brazil) and Altiva Soluções (Portugal) are independent official
+implementation partners. OpenFactory remains Apache-2.0; hiring a partner is optional.
+
+## Publishing
+
+Static hosting such as GitHub Pages can serve this directory directly.
+`CNAME` sets the custom domain to `openfactory.digital`.
 
 ## License
 
-Apache-2.0, matching the platform it documents. The OpenFactory name and mark follow
-the same conformance-gated governance described on the site itself.
+Apache-2.0, matching the platform it documents. Partner trademarks belong to their
+respective owners.
