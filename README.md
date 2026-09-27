@@ -64,13 +64,16 @@ the `CNAME` file at the repo root already declares the domain.
 
 ## Pending media
 
-The walkthrough video ships: `#product` in `index.html` carries a real `<video>` with
-`assets/videos/openfactory.mp4` and a poster frame, and the poster replaces the video
-outright below 640px. What is **still** a placeholder is the three-screenshot grid
-(`.screenshot-grid`) beneath it — swap those `<div>`s for `<img>` tags once the
-screenshots exist; no other change is needed.
+The walkthrough video ships at `#product` with controls and a poster frame. The
+three items below describe product outcomes; they are not mock screenshots.
 
 ## License
 
 Apache-2.0, matching the platform it documents. The OpenFactory name and mark follow
 the same conformance-gated governance described on the site itself.
+
+## Official implementation partners
+
+The homepage lists CastelloSoft in Brazil and Altiva Soluções in Portugal as independent, optional official implementation partners. OpenFactory stays open source under Apache-2.0. Partner logo and map asset sources are recorded in [assets/partners/README.md](assets/partners/README.md).
+
+The exact site revision before the partner refresh is tagged `before-partner-network-2026-09-27`. The published refresh is tagged `partner-network-preview-2026-09-27-v2`. Undo the published commit without rewriting history with `git revert partner-network-preview-2026-09-27-v2`.

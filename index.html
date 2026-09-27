@@ -23,8 +23,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/refresh.css">
 </head>
-<body>
+<body class="landing">
 
   <!-- Shared icon sprite: referenced by every diagram on this page. -->
   <svg style="display:none" aria-hidden="true">
@@ -61,6 +62,7 @@
             <li><a href="#integrations">Integrations</a></li>
             <li><a href="#numbers">Numbers</a></li>
             <li><a href="#product">Product</a></li>
+            <li><a href="#partners">Partners</a></li>
             <li><a href="/how-it-works.html">How it works</a></li>
           </ul>
         </div>
@@ -79,37 +81,28 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Open source · Apache-2.0</span>
-          <h1>Tickets in. Reviewed pull requests out.</h1>
-          <div class="lede">
-            <p>
-              OpenFactory takes a card from your board, runs a coding agent on it in a sandbox
-              with your project's own test gates, has a second agent review the result, and
-              opens the pull request. You decide what gets built and what ships.
-            </p>
-          </div>
+          <span class="eyebrow"><span class="open-dot" aria-hidden="true"></span> Open source · Apache-2.0</span>
+          <h1>Tickets in.<br>Reviewed pull<br>requests out.</h1>
+          <div class="lede"><p>Your board. Your agents. Your infrastructure. OpenFactory turns a ticket into tested code and an independently reviewed pull request.</p><p>You decide what gets built and what ships.</p></div>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#install">Install</a>
-            <a class="btn btn-secondary" href="https://github.com/Open-Factory-Digital/openfactory-core" target="_blank" rel="noopener">
-              GitHub
-            </a>
-            <a class="btn btn-secondary" href="/how-it-works.html">How it works</a>
+            <a class="btn btn-primary" href="#install">Install <span aria-hidden="true">↘</span></a>
+            <a class="btn btn-secondary" href="#product">See it run <span aria-hidden="true">↓</span></a>
           </div>
-          <div class="hero-badges">
-            <span class="badge">Apache-2.0</span>
-            <span class="badge">No cloud account</span>
-            <a class="badge" href="https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/STATUS.md" target="_blank" rel="noopener">Test count: docs/STATUS.md</a>
-          </div>
+          <a class="hero-partner-link" href="#partners">Need help getting into production? Meet the partners <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="hero-media">
-          <div class="terminal">
-            <span class="label">Docker is the only prerequisite</span>
-            <pre><span class="cmd">curl -fsSL https://openfactory.digital/install.sh | sh</span>
-<span class="out"># pulls the published images and starts the panel
-# on http://localhost:8787</span></pre>
+        <div class="factory-visual" role="img" aria-label="Illustrative workflow: an accepted ticket enters OpenFactory, is built in a sandbox, tested with the project's own gates and reviewed by an independent agent. A person decides whether to merge and release.">
+          <div class="factory-top"><span class="factory-wordmark"><img src="/assets/logos/icon-white.svg" alt="" width="24" height="24"> OpenFactory</span><span class="factory-top-label">WORKFLOW</span></div>
+          <div class="factory-input"><span class="micro-label">01 / FROM YOUR BOARD</span><strong>An accepted ticket</strong><span>Requirements + project context</span></div>
+          <div class="factory-track">
+            <div class="factory-stage"><span class="stage-icon" aria-hidden="true">⌘</span><div><strong>Build</strong><span>Coding agent · isolated sandbox</span></div><span class="stage-number">02</span></div>
+            <div class="factory-stage"><span class="stage-icon" aria-hidden="true">✓</span><div><strong>Verify</strong><span>Your build commands &amp; test gates</span></div><span class="stage-number">03</span></div>
+            <div class="factory-stage"><span class="stage-icon" aria-hidden="true">⎇</span><div><strong>Review</strong><span>A second, independent agent</span></div><span class="stage-number">04</span></div>
           </div>
+          <div class="factory-output"><svg aria-hidden="true" width="19" height="19"><use href="#ic-github"/></svg><div><strong>A reviewed pull request</strong><span>Ready for a human decision</span></div><span aria-hidden="true">↗</span></div>
+          <div class="factory-boundary"><span aria-hidden="true">↳</span> Merge &amp; release stay with your team.</div>
         </div>
       </div>
+      <div class="container foundation-strip"><span>BUILT TO BE YOURS</span><span>Apache-2.0</span><span>Self-hosted</span><span>Your existing tools</span><span>Human release decisions</span></div>
     </section>
 
     <!-- ============ WHY: per-seat assistants vs a pipeline ============ -->
@@ -471,7 +464,7 @@
         </div>
 
         <div class="media-video">
-          <video class="media-video-motion" autoplay muted loop playsinline preload="auto" poster="assets/videos/openfactory-poster.jpg">
+          <video class="media-video-motion" controls muted loop playsinline preload="none" poster="assets/videos/openfactory-poster.jpg">
             <source src="assets/videos/openfactory.mp4" type="video/mp4">
           </video>
           <img class="media-video-static" src="assets/videos/openfactory-poster.jpg" alt="OpenFactory dashboard and pipeline board">
@@ -532,6 +525,37 @@
           Known limits are written down.
           <a href="/how-it-works.html#limits">Read them before you adopt it →</a>
         </p>
+      </div>
+    </section>
+
+    <!-- ============ OFFICIAL IMPLEMENTATION PARTNERS ============ -->
+    <section class="partner-section" id="partners" aria-labelledby="partners-title">
+      <div class="container">
+        <div class="partner-heading">
+          <div><span class="eyebrow">The implementation network</span><h2 id="partners-title">Open source.<br>Local expertise.</h2></div>
+          <p>Run OpenFactory yourself, or bring in an official implementation partner to help put the factory to work in your business.</p>
+        </div>
+        <div class="partner-map" role="img" aria-label="World map marking two independent official implementation partners: CastelloSoft in Brazil and Altiva Soluções in Portugal. Markers indicate countries, not office addresses.">
+          <img src="/assets/partners/world-map.svg" alt="" width="1080" height="465" loading="lazy">
+          <div class="map-location map-brazil"><span class="map-pin"></span><div><span>BRAZIL</span><strong>CastelloSoft</strong></div></div>
+          <div class="map-location map-portugal"><span class="map-pin"></span><div><span>PORTUGAL</span><strong>Altiva Soluções</strong></div></div>
+          <div class="map-caption"><span class="map-key" aria-hidden="true"></span> Partner locations <span>02 countries · 02 independent companies</span></div>
+        </div>
+        <div class="partner-cards">
+          <article class="partner-card">
+            <div class="partner-card-top"><span>01 / BRAZIL</span><span>Official implementation partner</span></div>
+            <div class="partner-brand castello-brand" aria-label="CastelloSoft"><span>CASTELLO</span><i aria-hidden="true"></i><span>SOFT</span></div>
+            <p>OpenFactory implementation, team training and ongoing factory operation for companies in Brazil.</p>
+            <a href="https://castellosoft.com.br/" target="_blank" rel="noopener">Meet CastelloSoft <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="partner-card">
+            <div class="partner-card-top"><span>02 / PORTUGAL</span><span>Official implementation partner</span></div>
+            <div class="partner-brand"><img src="/assets/partners/altiva.svg" alt="Altiva Soluções" width="609" height="201" loading="lazy"></div>
+            <p>AI consulting, custom software development and OpenFactory implementation support, based in Portugal.</p>
+            <a href="https://altiva.ai/" target="_blank" rel="noopener">Meet Altiva Soluções <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+        <div class="partner-independence"><span>OPEN SOURCE, BY DEFAULT.</span><p>CastelloSoft and Altiva Soluções are independent companies and recommended official implementation partners. Services are contracted directly with each partner. OpenFactory remains Apache-2.0 and can be used without hiring a partner.</p></div>
       </div>
     </section>
 
@@ -611,7 +635,7 @@
             GitHub
           </a>
           <a class="btn btn-secondary" href="/how-it-works.html">How it works</a>
-          <a class="btn btn-secondary" href="mailto:contact@openfactory.digital">Contact</a>
+          <a class="btn btn-secondary" href="#partners">Find an implementation partner</a>
         </div>
       </div>
     </section>
@@ -637,6 +661,7 @@
               <li><a href="/how-it-works.html">How it works</a></li>
               <li><a href="https://github.com/Open-Factory-Digital/openfactory-core" target="_blank" rel="noopener">GitHub</a></li>
               <li><a href="#numbers">Numbers</a></li>
+              <li><a href="#partners">Official partners</a></li>
               <li><a href="/how-it-works.html#limits">Limits</a></li>
             </ul>
           </div>
