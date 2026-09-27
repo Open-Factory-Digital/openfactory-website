@@ -123,10 +123,9 @@
           <div class="feature">
             <h3>1. One named practitioner</h3>
             <p>
-              An engineer who has run OpenFactory on their own repository and on a real forge
-              organisation, and who has completed the practitioner drill: a seeded deployment with
-              known faults that the practitioner must diagnose and fix. The drill produces a
-              practitioner pack.
+              The engineer responsible for the deployment below, named in the partner record and
+              in the deployment pack. The program holds that person and the partner to the
+              deployment's outcomes.
             </p>
           </div>
           <div class="feature">
@@ -191,20 +190,6 @@
         <div class="claim">
           <span class="claim-index">01</span>
           <div>
-            <h3>Run the practitioner drill</h3>
-            <p>
-              On the practitioner's own deployment. The drill seeds a project with known faults, the
-              practitioner fixes them, and the command records what passed.
-            </p>
-            <div class="code-block">
-              <pre><span class="cmd">openfactory certify practitioner --out practitioner.tgz</span></pre>
-            </div>
-          </div>
-        </div>
-
-        <div class="claim">
-          <span class="claim-index">02</span>
-          <div>
             <h3>Gather the deployment pack</h3>
             <p>
               On the customer's deployment, run by the customer's operator or by the partner with the
@@ -216,27 +201,27 @@
             </p>
             <div class="code-block">
               <pre><span class="cmd">openfactory certify deployment --partner &lt;slug&gt; --profile standard --dry-run</span>
-<span class="cmd">openfactory certify deployment --partner &lt;slug&gt; --profile standard --consent "name, role, date" --yes --out deployment.tgz</span></pre>
+<span class="cmd">openfactory certify deployment --partner &lt;slug&gt; --profile standard --practitioner "name" --consent "name, role, date" --yes --out deployment.tgz</span></pre>
             </div>
           </div>
         </div>
 
         <div class="claim">
-          <span class="claim-index">03</span>
+          <span class="claim-index">02</span>
           <div>
             <h3>Verify locally, then submit</h3>
             <p>
               <code>openfactory certify verify</code> runs the same checks as the submission
               automation, so the result is known before submitting. Submit by pull request to the
               partners repository, under <code>partners/&lt;slug&gt;/</code>: the partner record, the
-              signed agreement, the practitioner pack, the deployment pack. The customer sends the
+              signed agreement, the deployment pack. The customer sends the
               confirmation email to partners@openfactory.digital.
             </p>
           </div>
         </div>
 
         <div class="claim">
-          <span class="claim-index">04</span>
+          <span class="claim-index">03</span>
           <div>
             <h3>Listing and renewal</h3>
             <p>
@@ -253,7 +238,7 @@
             <ul class="never-list">
               <li>Pass or fail per control, for the claimed profile.</li>
               <li>Aggregate outcomes: jobs run, merged, parked by class, medians for cost and time to pull request, oldest Needs Action age.</li>
-              <li>Platform version, provider kinds, proof status per repository.</li>
+              <li>Platform version, provider kinds, proof status per repository, the responsible practitioner's name.</li>
               <li>A redaction log and the partner's signature.</li>
             </ul>
           </div>
@@ -344,7 +329,7 @@
         <ol>
           <li>Email partners@openfactory.digital with the company name, website, countries and languages served, the practitioner's name, and a one-paragraph description of the live deployment.</li>
           <li>Receive the partner slug, the agreement text and the partners repository link.</li>
-          <li>Run the practitioner drill and gather the deployment pack as described above.</li>
+          <li>Gather the deployment pack as described above.</li>
           <li>Open the pull request. Ask the customer to send the confirmation email.</li>
           <li>Listing follows the merge.</li>
         </ol>
