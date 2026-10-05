@@ -25,7 +25,8 @@
 # Options:
 #   --dir <path>      where to install                     (default: ./openfactory)
 #   --version <tag>   which release to install             (default: the latest one)
-#   --force           write into a directory that already has an .env.compose
+#   --force           re-run over an install that has an .env.compose — the upgrade: every
+#                     value in it is kept, and its pinned version moves to this release
 #   --dry-run         print what would happen; touch nothing
 #   --no-run          set everything up, do not start the stack
 #   --uninstall       stop the stack and remove its volumes, after asking
@@ -145,6 +146,13 @@ usage() {
 # The value is passed in as `OPENFACTORY_WORK_DIR`, which is the same variable `preflight`,
 # `docker-compose.yml` and the generated `.env.compose` already read — so there is one name for
 # this, and the host is the one machine that gets to fill it in.
+# A VALUE READ OUT OF `.env.compose`, with ONE surrounding pair of double quotes taken off and
+# nothing else. This was `tr -d '"'`, which strips a double quote from anywhere in the value — a
+# path with one inside it came back as another path (#367).
+unquoted() {
+    sed -e 's/^"\(.*\)"$/\1/'
+}
+
 resolve_the_work_directory() {
     # NO EARLY RETURN, AND THAT IS THE FIX FOR A DEFECT FOUND BY RUNNING THIS (2026-09-04). A
     # declared OPENFACTORY_WORK_DIR used to `return 0` here — skipping the `mkdir` at the bottom —
@@ -157,8 +165,20 @@ resolve_the_work_directory() {
     #
     # Measured against the published v0.1.4 with the end-to-end scripts, which is also how the CI
     # job would have hit it — it passes the variable, so it took this path every time.
+    # AN UPGRADE KEEPS THE WORK DIRECTORY ITS FILE ALREADY NAMES (review of #366). `init` keeps
+    # every value of the file it replaces, this one included, and the directory this function
+    # resolves is the one made, mounted into the cli container and handed to `init` as declared —
+    # so resolving anything else here would write one path into the file and create another.
+    # A declared variable still wins; this is read only when nobody declared one.
+    kept_work_dir=""
+    if [ -z "${OPENFACTORY_WORK_DIR:-}" ] && [ -f "$DIR/.env.compose" ]; then
+        kept_work_dir=$(grep '^OPENFACTORY_WORK_DIR=' "$DIR/.env.compose" 2>/dev/null \
+                        | tail -n 1 | cut -d= -f2- | unquoted || true)
+    fi
     if [ -n "${OPENFACTORY_WORK_DIR:-}" ]; then
         WORK_DIR="$OPENFACTORY_WORK_DIR"
+    elif [ -n "$kept_work_dir" ]; then
+        WORK_DIR="$kept_work_dir"
     else
     # `data_home`, NOT `base`. `fetch_assets` already owns `base` for the release download URL, and
     # one name meaning two things in one script is how the next reader mis-edits it — the guard on
@@ -174,13 +194,24 @@ resolve_the_work_directory() {
     WORK_DIR="${data_home}/openfactory/work"
     fi
 
-    # CREATED HERE, ON THE HOST, BY THE PERSON WHO OWNS IT. `openfactory init` used to make it —
-    # but `init` runs in a container, where `/home/<you>` does not exist and uid 1000 may not
-    # create it, so the mkdir failed against the container's filesystem while describing a path on
-    # yours. The host is the only machine that can make a host directory.
-    mkdir -p "$WORK_DIR" \
-        || die "could not create the job workspace \`${WORK_DIR}\`." \
-               "Set OPENFACTORY_WORK_DIR to an absolute path you own and run this again."
+    # THIS FUNCTION ONLY RESOLVES. It used to end by CREATING the directory, and that made it the
+    # one write this script performed outside `$DIR` — on every path, including the two that
+    # promise not to write at all. Found by running it (Roberto, 2026-09-04):
+    #
+    #   sh install.sh --dry-run  --dir …/target      -> …/target NOT created, but
+    #                                                   $HOME/.local/share/openfactory/work WAS
+    #   sh install.sh --uninstall --dir …/nothing    -> refused by name, and still wrote it
+    #
+    # It contradicted the two sentences this file opens with — "--dry-run: print what would
+    # happen; touch nothing" and "Everything it writes goes inside the target directory, which you
+    # own". `mkdir -p` is idempotent, so on any machine that has installed once both paths are
+    # silent no-ops; it appears exactly on the machine where a stranger runs `--dry-run` first to
+    # decide whether to trust this script.
+    #
+    # The creation now lives in `main()`, after the `--uninstall` branch and wrapped in `run`, so
+    # every mode that promises not to write keeps that promise. Task U's fix — removing an early
+    # return that skipped the mkdir — was right for the defect it named; it moved the creation onto
+    # a path both modes pass through, which is what exposed this one.
 }
 
 resolve_the_docker_socket() {
@@ -263,7 +294,7 @@ prepare_directory() {
     # overwriting it silently is how an install becomes an incident.
     if [ -f "$DIR/.env.compose" ] && [ "$FORCE" -eq 0 ]; then
         die "\`$DIR/.env.compose\` already exists, and it holds credentials." \
-            "Re-run with --force to overwrite it, or --dir <path> to install beside it. To UPGRADE an existing install, run this from that directory with --force: it keeps your answers."
+            "To UPGRADE it, re-run with --force: every value in it is kept, credentials included, and only its pinned version moves. Or --dir <path> to install beside it."
     fi
     # THE OTHER PLACE `set -e` COULD END THIS SCRIPT MID-SENTENCE, found by auditing every command
     # for the missing `|| die` that made the `init` failure unreadable. An unwritable parent is an
@@ -518,7 +549,10 @@ run_preflight() {
 
 run_init() {
     step "Writing this deployment's environment"
-    if [ "$DRY_RUN" -eq 1 ]; then say "  would run: openfactory init --out /out/.env.compose"; return 0; fi
+    if [ "$DRY_RUN" -eq 1 ]; then
+        say "  would run: openfactory init --out /out/.env.compose --runtime compose"
+        return 0
+    fi
     # `|| die` ON BOTH, and its absence is half of why the defect above was so expensive. Without
     # it `set -e` ends the script at this line with no sentence at all — and this is the step most
     # likely to fail for an ordinary reason (a question nobody can answer without a terminal, a
@@ -530,24 +564,77 @@ run_init() {
     # So it sent people to add a flag they did not need, to work around a refusal that would not
     # have happened. A plain re-run is the right advice.
     #
+    # WE STATE THE RUNTIME, because this script IS the compose runtime and a question whose answer
+    # is already known is not a question. `--runtime` became required off a terminal when the
+    # `local` door shipped (ADR-0049), and v0.2.0's `verify_the_install` died on it:
+    #
+    #     ✗ --runtime is required when this does not run in a terminal (one of: local, compose, fargate)
+    #
+    # `_cli tty` was believed to cover this and does not — measured 2026-09-11. It passes `-t` only
+    # when `(exec < /dev/tty)` succeeds, and where there is NO CONTROLLING TERMINAL that open fails,
+    # so the else branch runs `docker run -i` with no `-t` at all and `sys.stdin.isatty()` is false.
+    # (For the record, `-t` without `-i` DOES give the container a tty on stdin — measured; the
+    # missing `-t` was the cause, not the missing `-i`.)
+    #
+    # WHICH INSTALLS THIS BREAKS, measured rather than reasoned about: `curl … | sh` AT A TERMINAL
+    # still works, because `/dev/tty` is the controlling terminal and is reachable around the pipe.
+    # What breaks is every arrangement with no controlling terminal — CI, cron, `ssh host sh -s`,
+    # a Dockerfile RUN, a systemd unit. So the headline command was never broken; the unattended
+    # install was, and silently, because nothing in the suite drove an install with no terminal.
+    #
+    # `local` IS NOT AN ANSWER THIS SCRIPT COULD GIVE. That door needs no Docker, no compose file
+    # and no images — it is `pip install` and `openfactory init`, on a different page. By the time
+    # this line runs we have already fetched `docker-compose.yml`, verified it against the release
+    # checksums and pulled four images. Asking would offer a choice that contradicts what the
+    # person already typed.
+    #
+    # IT GOES BEFORE `$INIT_ARGS` SO IT CAN BE OVERRIDDEN: a later `--runtime` wins (measured
+    # against the published v0.2.0 image), so `install.sh -- --runtime local` still reaches a
+    # person who knows what they are doing.
+    #
     # `$INIT_ARGS` IS DELIBERATELY UNQUOTED: it is a list of separate flags, not one argument.
     # shellcheck disable=SC2086
     if [ -f "$DIR/.env.compose" ] && [ "$FORCE" -eq 1 ]; then
-        in_the_cli_asking_questions init --out /out/.env.compose --force $INIT_ARGS \
+        in_the_cli_asking_questions init --out /out/.env.compose --force --runtime compose $INIT_ARGS \
             || die "\`openfactory init\` did not finish, so ${DIR}/.env.compose was not written." \
                    "Fix what it reported above and run this installer again with --force."
     else
         # shellcheck disable=SC2086
-        in_the_cli_asking_questions init --out /out/.env.compose $INIT_ARGS \
+        in_the_cli_asking_questions init --out /out/.env.compose --runtime compose $INIT_ARGS \
             || die "\`openfactory init\` did not finish, so ${DIR}/.env.compose was not written." \
                    "Fix what it reported above and run this installer again — nothing was left behind that needs --force."
     fi
     # THE VERSION IS PINNED INTO THE FILE, and this is the line that keeps every user off a
     # floating tag. `docker-compose.yml` defaults to `main` so a CONTRIBUTOR gets the branch they
     # are working on; an install must never be moved by somebody else's push.
-    if ! grep -q '^OPENFACTORY_VERSION=' "$DIR/.env.compose" 2>/dev/null; then
-        printf 'OPENFACTORY_VERSION=%s\n' "$VERSION" >> "$DIR/.env.compose"
+    #
+    # REPLACED, NOT APPENDED WHEN MISSING. An upgrade re-runs this over a file that already holds
+    # a pin, and `init` keeps what the file held (every value but this one), so a pin written only
+    # when absent would leave an upgraded install on the release it was upgrading FROM, whichever
+    # `init` did the writing. Exactly one line, naming the release this run installed.
+    #
+    # THE FILE IS NEVER TOUCHED UNLESS ITS COPY IS WHOLE (review of #366). `grep -v` exits 1 when it
+    # filters every line out, which is fine, and 2 on a read error; the redirect fails on a full
+    # disk, a quota or a read-only mount. Swallowing those (`|| true`) and writing the copy back
+    # turned a failed read into a one-line `.env.compose` with every credential gone, and the stack
+    # then started. So anything but 0 or 1 stops the run with the file as it was, and the copy (0600
+    # from `mktemp`) REPLACES the file with `mv`: there is no moment when it holds half of itself.
+    pinned=$(mktemp "${DIR}/.env.compose.XXXXXX") \
+        || die "could not pin ${VERSION} into ${DIR}/.env.compose: no temporary file could be made in ${DIR}." \
+               "Check that ${DIR} is writable and run this again with --force; every value in the file is kept."
+    # A file that is not there holds nothing to lose, so only the pin is written.
+    rc=0
+    if [ -f "$DIR/.env.compose" ]; then
+        grep -v '^OPENFACTORY_VERSION=' "$DIR/.env.compose" > "$pinned" || rc=$?
     fi
+    if [ "$rc" -gt 1 ] || ! printf 'OPENFACTORY_VERSION=%s\n' "$VERSION" >> "$pinned"; then
+        rm -f "$pinned"
+        die "could not copy ${DIR}/.env.compose to move its pin to ${VERSION}, so it was left exactly as it was." \
+            "Check the disk and the permissions under ${DIR}, then run this again with --force."
+    fi
+    mv "$pinned" "$DIR/.env.compose" \
+        || { rm -f "$pinned"; die "could not put the pinned copy back over ${DIR}/.env.compose; the file was left as it was." \
+                                  "Check the permissions under ${DIR}, then run this again with --force."; }
 }
 
 start_the_stack() {
@@ -567,7 +654,7 @@ start_the_stack() {
 }
 
 panel_port() {
-    port=$(grep '^PANEL_PORT=' "$DIR/.env.compose" 2>/dev/null | cut -d= -f2- | tr -d '"' || true)
+    port=$(grep '^PANEL_PORT=' "$DIR/.env.compose" 2>/dev/null | cut -d= -f2- | unquoted || true)
     [ -n "${port:-}" ] && printf '%s' "$port" || printf '8787'
 }
 
@@ -644,6 +731,32 @@ uninstall() {
     say "Stopped, and the volumes are gone. ${DIR} is still there — delete it yourself when you are ready."
 }
 
+refuse_an_unbindable_work_directory() {
+    # WHAT COMPOSE CAN BIND, CHECKED WHOEVER SAID IT (#367). `init` checks the value it keeps
+    # and refuses; the declared one was written as it came, so `OPENFACTORY_WORK_DIR=~/work`
+    # reached the file — compose expands no tilde in a bind source, made a directory called `~`
+    # and mounted an empty box. And a kept `~/work` had `mkdir -p` in `main()` make that directory
+    # before `init` refused it. Refused by name, before anything is downloaded or made.
+    #
+    # NOT IN `resolve_the_work_directory`, AND CALLED AFTER THE `--uninstall` BRANCH (review of
+    # #371). Uninstall needs no work directory — it stops the stack and removes its volumes — and
+    # the file it is reached for is exactly the broken one: a `.env.compose` holding `~/work`
+    # refused the escape hatch by a sentence that never named the flag it had just refused.
+    # `--dry-run` still passes through here: saying an install would fail is what it is for.
+    #
+    # THE TILDE FIRST: `~/work` is relative as well, and "not an absolute path" is true of it and
+    # less specific than the sentence written for it.
+    case "$WORK_DIR" in
+        *~*) die "OPENFACTORY_WORK_DIR=\`${WORK_DIR}\` holds a \`~\`, which compose does not expand in a bind source: it would create a directory called \`~\` and mount an empty box." \
+                 "Write the whole path — e.g. OPENFACTORY_WORK_DIR=\$HOME/.local/share/openfactory/work — and run this again." ;;
+    esac
+    case "$WORK_DIR" in
+        /*) ;;
+        *) die "OPENFACTORY_WORK_DIR=\`${WORK_DIR}\` is not an absolute path, and compose resolves a relative bind source against wherever \`up\` runs." \
+               "Write the whole path — e.g. OPENFACTORY_WORK_DIR=/srv/openfactory/work — and run this again." ;;
+    esac
+}
+
 main() {
     parse_arguments "$@"
     docker_is_on_path
@@ -656,6 +769,15 @@ main() {
     resolve_the_work_directory
 
     if [ "$UNINSTALL" -eq 1 ]; then uninstall; return 0; fi
+    refuse_an_unbindable_work_directory
+
+    # THE ONLY THING THIS SCRIPT MAKES OUTSIDE `$DIR`, and it is made here rather than while
+    # resolving so that `--uninstall` (which returns above) and `--dry-run` (which `run` turns into
+    # a printed line) never create it. It has to exist before `run_preflight`, which is the first
+    # step to bind-mount it into a container.
+    run mkdir -p "$WORK_DIR" \
+        || die "could not create the job workspace \`${WORK_DIR}\`." \
+               "Set OPENFACTORY_WORK_DIR to an absolute path you own and run this again."
 
     resolve_version
     step "Installing OpenFactory ${VERSION} into ${DIR}"
