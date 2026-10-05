@@ -1,0 +1,76 @@
+name: installer
+
+# THE SITE SERVES THE INSTALLER OF THE LATEST FINAL RELEASE, AND NOTHING ELSE.
+#
+# `curl -fsSL https://openfactory.digital/install.sh | sh` is the install command the core's README
+# and every release page print. This site is GitHub Pages, which cannot redirect a path, so it
+# serves a copy, and that copy was committed once (2026-09-04) and never updated: for a month the
+# documented command ran the v0.1.x installer against the latest release (openfactory-core#531).
+#
+# This job keeps the copy equal to the latest FINAL release's own `install.sh`, checked against
+# that release's SHA256SUMS. GitHub's "latest release" is never a pre-release, so a candidate
+# never reaches the site: a candidate is installed by naming it (openfactory-core docs/RELEASING.md,
+# "Installing a candidate"). It runs every hour, and by hand after a release (Actions → installer →
+# Run workflow) so the site follows at once.
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: installer
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch the latest final release's installer and check it against its SHA256SUMS
+        id: fetch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CORE: Open-Factory-Digital/openfactory-core
+        run: |
+          set -eu
+          tag=$(gh api "repos/$CORE/releases/latest" --jq .tag_name)
+          case "$tag" in
+            v[0-9]*.[0-9]*.[0-9]*) ;;
+            *) echo "::error::the latest release of $CORE is '$tag', not a final version tag"; exit 1 ;;
+          esac
+          case "$tag" in
+            *-*) echo "::error::the latest release of $CORE is a pre-release ($tag)"; exit 1 ;;
+          esac
+          dir=$(mktemp -d)
+          gh release download "$tag" --repo "$CORE" --pattern install.sh --pattern SHA256SUMS --dir "$dir"
+          grep -q ' install.sh$' "$dir/SHA256SUMS" \
+            || { echo "::error::$tag's SHA256SUMS does not list install.sh"; exit 1; }
+          (cd "$dir" && sha256sum -c SHA256SUMS --ignore-missing)
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "file=$dir/install.sh" >> "$GITHUB_OUTPUT"
+
+      - name: Replace the site's copy when it differs, and rebuild the site
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.fetch.outputs.tag }}
+          FILE: ${{ steps.fetch.outputs.file }}
+        run: |
+          set -eu
+          if cmp -s "$FILE" install.sh; then
+            echo "install.sh is already $TAG's"
+            exit 0
+          fi
+          cp "$FILE" install.sh
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add install.sh
+          git commit -m "The site serves the installer of $TAG"
+          git push origin HEAD:main
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" --silent \
+            || echo "::warning::the push is in; the Pages build request was refused, so the site follows on its next build"

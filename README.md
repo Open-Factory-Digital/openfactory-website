@@ -1,7 +1,7 @@
 # openfactory.digital
 
-Source for the OpenFactory marketing site — three static pages, no build step, no
-framework, no CI.
+Source for the OpenFactory marketing site — static pages, no build step, no framework. One
+workflow keeps the installer the site serves equal to the latest release's (below).
 
 ## Where the claims come from
 
@@ -27,7 +27,7 @@ beside it, so the next editor can re-check it without repeating the search.
 > public-claims page moving to `docs/STATUS.md` on 2026-08-26. Anyone sent to
 > `site-guide.md` to check a claim would have found nothing to open.
 
-This repository has no test suite and no CI, so nothing here can catch a claim that
+This repository has no test suite and no CI for its copy, so nothing here can catch a claim that
 goes stale. A network-marked check in the **core** suite — which is where the
 `test_the_docs_do_not_drift.py` family already lives — is the mechanism for that, and
 it is not built yet.
@@ -48,7 +48,25 @@ assets/favicons/        favicon.ico, 16/32px png, 512px app icon
 assets/videos/          the product walkthrough and its poster frame
 CNAME                   custom domain for GitHub Pages (openfactory.digital)
 robots.txt
+install.sh              the installer `curl -fsSL https://openfactory.digital/install.sh | sh` runs —
+                        a copy of the latest final release's, kept so by a workflow (below)
+.github/workflows/installer.yml   keeps install.sh equal to the latest final release's
 ```
+
+## install.sh — never edited here
+
+`https://openfactory.digital/install.sh` is the install command the core's README and every release
+page print. GitHub Pages cannot redirect a path, so the site serves a **copy** of the installer.
+
+- **The copy is the latest final release's own `install.sh`**, checked against that release's
+  `SHA256SUMS`. The `installer` workflow replaces it when it differs, every hour, and by hand after
+  a release (Actions → installer → Run workflow).
+- **A release candidate never reaches the site.** GitHub's "latest release" is never a pre-release.
+  A candidate is installed by naming it: see "Installing a candidate" in the core's
+  [`docs/RELEASING.md`](https://github.com/Open-Factory-Digital/openfactory-core/blob/main/docs/RELEASING.md).
+- **Never edit `install.sh` here.** A change to the installer is a pull request on the core, and it
+  reaches the site with the next final release. The copy committed on 2026-09-04 and never updated
+  is why the site served the v0.1.x installer for a month (openfactory-core#531).
 
 ## Preview locally
 
