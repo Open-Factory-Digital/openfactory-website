@@ -96,6 +96,6 @@ the same conformance-gated governance described on the site itself.
 
 ## Official implementation partners
 
-The homepage lists CastelloSoft in Brazil and Altiva Soluções in Portugal as independent, optional official implementation partners. OpenFactory stays open source under Apache-2.0. Partner logo and map asset sources are recorded in [assets/partners/README.md](assets/partners/README.md).
+The homepage lists CastelloSoft in Brazil and Altiva Soluções in Portugal as optional official implementation partners. Altiva Soluções maintains OpenFactory; CastelloSoft is an independent company. OpenFactory stays open source under Apache-2.0. Partner logo and map asset sources are recorded in [assets/partners/README.md](assets/partners/README.md).
 
 The exact site revision before the partner refresh is tagged `before-partner-network-2026-09-27`. The published refresh is tagged `partner-network-preview-2026-09-27-v2`. Undo the published commit without rewriting history with `git revert partner-network-preview-2026-09-27-v2`.
