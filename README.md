@@ -1,5 +1,14 @@
 # openfactory.digital
 
+> **OpenFactory continues as BeeverForge.** Since 2026-10-28 every page of this site sends its
+> reader to its counterpart on [beeverforge.com](https://beeverforge.com/) (`index.html`,
+> `how-it-works.html`, `partners.html`, and `404.html` for any other path). GitHub Pages cannot
+> redirect a path, so each page does it with a meta refresh, a canonical link and a script.
+> `install.sh` is not redirected: `curl -fsSL https://openfactory.digital/install.sh | sh` is
+> OpenFactory 0.7's install and upgrade command, and the `installer` workflow keeps it equal to
+> the latest release of [BeeverForge/openfactory-core](https://github.com/BeeverForge/openfactory-core),
+> the 0.7 line's repository. What follows describes the site as it was.
+
 Source for the OpenFactory marketing site — static pages, no build step, no framework. One
 workflow keeps the installer the site serves equal to the latest release's (below).
 
