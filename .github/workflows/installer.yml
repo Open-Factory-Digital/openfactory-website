@@ -36,7 +36,7 @@ jobs:
         id: fetch
         env:
           GH_TOKEN: ${{ github.token }}
-          CORE: Open-Factory-Digital/openfactory-core
+          CORE: BeeverForge/openfactory-core
         run: |
           set -eu
           tag=$(gh api "repos/$CORE/releases/latest" --jq .tag_name)
